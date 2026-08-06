@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>freyaX 프로토타입 — 회원가입에서 개인화 메인화면까지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF0EC;
+  --grid:#DDE4DD;
+  --card:#FBFCFA;
+  --ink:#16204A;
+  --ink-2:#4E5B7E;
+  --ink-3:#8A93AC;
+  --line:#D3D9D8;
+  --fertile:#D6255E;
+  --menses:#8C2F3D;
+  --follicular:#1F8C80;
+  --luteal:#6A54A8;
+  --amber:#D2841F;
+  --ok:#1F8C80;
+  --sperm:#2B4C8C;
+  --shadow:0 1px 0 rgba(22,32,74,.06), 0 18px 40px -24px rgba(22,32,74,.45);
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+  --serif:'Gowun Batang','Nanum Myeongjo',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--sans);color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:28px 28px, 28px 28px;
+  display:flex;justify-content:center;align-items:flex-start;
+  gap:26px;padding:26px 18px 60px;flex-wrap:wrap;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--fertile);outline-offset:2px}
+
+/* ── 좌측 브리프 ─────────────────────────── */
+.brief{width:250px;padding-top:14px}
+.brief .mark{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--ink-3);text-transform:uppercase}
+.brief h1{font-family:var(--serif);font-size:31px;line-height:1.18;font-weight:700;margin:10px 0 12px;letter-spacing:-.01em}
+.brief p{font-size:12.5px;line-height:1.75;color:var(--ink-2)}
+.brief .legend{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+.brief .legend b{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-3);display:block;margin-bottom:9px}
+.swatch{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-2);margin-bottom:6px}
+.swatch i{width:11px;height:11px;border-radius:2px;display:block}
+
+/* ── 폰 프레임 ───────────────────────────── */
+.phone{
+  width:392px;height:800px;border-radius:34px;background:var(--card);
+  box-shadow:var(--shadow);position:relative;overflow:hidden;
+  border:1px solid var(--line);display:flex;flex-direction:column;flex:0 0 auto;
+}
+.statusbar{height:34px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);flex:0 0 auto}
+.screen{flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.screen::-webkit-scrollbar{width:5px}
+.screen::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.pad{padding:0 22px 26px}
+
+/* ── 공용 요소 ───────────────────────────── */
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase}
+.h-serif{font-family:var(--serif);font-weight:700;letter-spacing:-.01em}
+.btn{display:block;width:100%;padding:15px;border-radius:13px;background:var(--ink);color:#fff;
+  font-size:14.5px;font-weight:600;transition:transform .12s ease, opacity .12s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn[disabled]{opacity:.28;transform:none;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink-2);border:1px solid var(--line);font-weight:500}
+.opt{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:14px 15px;
+  border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:8px;
+  font-size:14px;color:var(--ink);transition:border-color .12s, background .12s}
+.opt:hover{border-color:var(--ink-3)}
+.opt .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--ink-3);flex:0 0 auto;position:relative}
+.opt.sel{border-color:var(--ink);background:#F3F5FB}
+.opt.sel .dot{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
+.opt.sq .dot{border-radius:4px}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px;margin-bottom:11px}
+.tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  padding:3px 7px;border-radius:5px;background:#EEF1F8;color:var(--ink-2)}
+.tag.hot{background:#FBE9EF;color:var(--fertile)}
+.tag.amb{background:#FBF0E0;color:var(--amber)}
+.tag.ok{background:#E4F2F0;color:var(--ok)}
+
+/* ── 온보딩 ─────────────────────────────── */
+.intro{padding:52px 30px 30px;height:100%;display:flex;flex-direction:column}
+.intro .plot{height:150px;margin:26px 0 30px;position:relative}
+.intro h2{font-family:var(--serif);font-size:29px;line-height:1.38;font-weight:700;margin-bottom:14px}
+.intro p{font-size:13.5px;line-height:1.85;color:var(--ink-2)}
+.dots{display:flex;gap:6px;margin:auto 0 18px}
+.dots i{width:22px;height:3px;border-radius:2px;background:var(--line);display:block;transition:background .2s}
+.dots i.on{background:var(--ink)}
+
+/* ── 설문 ───────────────────────────────── */
+.qhead{padding:12px 22px 18px}
+.prog{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-bottom:14px}
+.prog>i{display:block;height:100%;background:var(--ink);transition:width .3s cubic-bezier(.4,0,.2,1)}
+.qtitle{font-family:var(--serif);font-size:22px;line-height:1.45;font-weight:700;margin:8px 0 6px}
+.qsub{font-size:12px;color:var(--ink-3);line-height:1.65;margin-bottom:18px}
+.numwrap{text-align:center;padding:14px 0 6px}
+.numval{font-family:var(--mono);font-size:56px;font-weight:500;letter-spacing:-.03em}
+.numval span{font-size:17px;color:var(--ink-3);margin-left:4px}
+input[type=range]{width:100%;accent-color:var(--ink);margin-top:14px}
+.bodygrid{display:flex;gap:11px}
+.bodygrid>div{flex:1;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.bodygrid label{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--ink-3);display:block}
+.bodygrid input{width:100%;border:none;font-family:var(--mono);font-size:26px;font-weight:500;
+  color:var(--ink);background:transparent;margin-top:4px}
+.bodygrid input:focus{outline:none}
+.bmiout{text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink-2);margin-top:12px}
+
+/* ── 규칙 트리 연산 ──────────────────────── */
+.trace{padding:40px 24px}
+.trace h3{font-family:var(--serif);font-size:20px;margin-bottom:4px}
+.trace .sub{font-size:12px;color:var(--ink-3);margin-bottom:24px}
+.rule{display:flex;gap:11px;align-items:flex-start;padding:9px 0;opacity:.2;
+  transition:opacity .28s;border-bottom:1px dashed var(--line)}
+.rule.shown{opacity:1}
+.rule .code{font-family:var(--mono);font-size:11px;color:var(--ink-3);width:26px;flex:0 0 auto;padding-top:1px}
+.rule .txt{font-size:12.5px;line-height:1.6;color:var(--ink-2);flex:1}
+.rule .res{font-family:var(--mono);font-size:10px;color:var(--ink-3);flex:0 0 auto;padding-top:2px}
+.rule.hit .txt{color:var(--ink);font-weight:600}
+.rule.hit .res{color:var(--fertile)}
+
+/* ── 결과 ───────────────────────────────── */
+.result{padding:34px 24px 24px}
+.stagecode{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--fertile)}
+.stagename{font-family:var(--serif);font-size:28px;font-weight:700;line-height:1.3;margin:8px 0 12px}
+.friring{display:flex;align-items:center;gap:18px;margin:18px 0}
+.friring .n{font-family:var(--mono);font-size:44px;font-weight:500;letter-spacing:-.03em;line-height:1}
+.bars{margin-top:6px}
+.barrow{display:flex;align-items:center;gap:9px;margin-bottom:7px;font-size:11.5px}
+.barrow .lb{width:74px;color:var(--ink-2);flex:0 0 auto}
+.barrow .tr{flex:1;height:5px;background:#E9ECEA;border-radius:3px;overflow:hidden}
+.barrow .tr>i{display:block;height:100%;background:var(--ink);border-radius:3px}
+.barrow .vl{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);width:26px;text-align:right}
+
+/* ── 홈 ─────────────────────────────────── */
+.hometop{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 22px 14px}
+.hometop .who{font-size:12px;color:var(--ink-3);line-height:1.5}
+.hometop .who b{display:block;font-size:15px;color:var(--ink);font-weight:600;margin-top:2px}
+.hero{border-radius:18px;padding:20px;margin-bottom:12px;position:relative;overflow:hidden;
+  background:#fff;border:1px solid var(--line)}
+.hero.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.hero.dark .eyebrow{color:rgba(255,255,255,.5)}
+.ringwrap{display:flex;align-items:center;gap:18px}
+.ringtxt .big{font-family:var(--mono);font-size:34px;font-weight:500;letter-spacing:-.02em;line-height:1.05}
+.ringtxt .lbl{font-size:12px;color:var(--ink-2);margin-top:5px;line-height:1.5}
+.hero.dark .ringtxt .lbl{color:rgba(255,255,255,.66)}
+.slot{margin-bottom:11px}
+.slotlbl{display:flex;align-items:center;gap:8px;margin:18px 0 9px}
+.slotlbl .eyebrow{flex:0 0 auto}
+.slotlbl .rule{flex:1;height:1px;background:var(--line);border:none;padding:0;opacity:1}
+.todo{display:flex;align-items:flex-start;gap:11px;padding:13px 15px;background:#fff;
+  border:1px solid var(--line);border-radius:12px;margin-bottom:7px;text-align:left;width:100%}
+.todo .chk{width:17px;height:17px;border-radius:5px;border:1.5px solid var(--ink-3);flex:0 0 auto;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
+.todo.done .chk{background:var(--ok);border-color:var(--ok)}
+.todo.done .t{text-decoration:line-through;color:var(--ink-3)}
+.todo .t{font-size:13.5px;font-weight:500;line-height:1.45}
+.todo .s{font-size:11.5px;color:var(--ink-3);margin-top:2px;line-height:1.5}
+.todo.urgent{border-color:var(--amber);background:#FDF8F0}
+.ctt{display:flex;gap:11px;padding:12px;background:#fff;border:1px solid var(--line);
+  border-radius:12px;margin-bottom:7px;align-items:center}
+.ctt .ic{width:38px;height:38px;border-radius:9px;background:#EEF1F8;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;color:var(--ink-2)}
+.ctt .t{font-size:13px;font-weight:500;line-height:1.4}
+.ctt .s{font-size:11px;color:var(--ink-3);margin-top:2px}
+.warn{border-left:3px solid var(--amber);background:#FDF8F0;padding:13px 15px;border-radius:0 11px 11px 0;
+  font-size:12.5px;line-height:1.65;color:#7A5514;margin-bottom:11px}
+.quiet{border-left:3px solid var(--luteal);background:#F4F2FA;padding:13px 15px;border-radius:0 11px 11px 0;
+  font-size:12.5px;line-height:1.65;color:#463374;margin-bottom:11px}
+
+/* ── 하단 탭 ─────────────────────────────── */
+.tabs{flex:0 0 auto;display:flex;border-top:1px solid var(--line);background:#fff}
+.tabs button{flex:1;padding:11px 0 15px;font-size:10px;color:var(--ink-3);
+  display:flex;flex-direction:column;align-items:center;gap:5px}
+.tabs button .g{width:17px;height:17px;border:1.4px solid currentColor;border-radius:5px}
+.tabs button.on{color:var(--ink);font-weight:600}
+.tabs button.on .g{background:var(--ink);border-color:var(--ink)}
+
+/* ── 캘린더 ─────────────────────────────── */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:10px}
+.cal .dow{font-family:var(--mono);font-size:9px;color:var(--ink-3);text-align:center;padding-bottom:5px}
+.cal .d{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;font-family:var(--mono);font-size:11px;color:var(--ink-2);background:#F5F7F5}
+.cal .d.m{background:#F6E6E9;color:var(--menses)}
+.cal .d.f{background:#FBE3EB;color:var(--fertile);font-weight:600}
+.cal .d.o{background:var(--fertile);color:#fff;font-weight:600}
+.cal .d.l{background:#F0EDF9;color:var(--luteal)}
+.cal .d.today{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cal .d i{width:3px;height:3px;border-radius:50%;background:currentColor;margin-top:2px;display:block}
+.calleg{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.calleg span{font-size:10.5px;color:var(--ink-2);display:flex;align-items:center;gap:5px}
+.calleg i{width:9px;height:9px;border-radius:3px;display:block}
+
+/* ── 챌린지 ─────────────────────────────── */
+.phase{border:1px solid var(--line);border-radius:13px;padding:14px;margin-bottom:9px;background:#fff}
+.phase .ph{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.phase .ph b{font-size:13.5px;font-weight:600}
+.phase .ph span{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+.phase ul{list-style:none;font-size:12px;color:var(--ink-2);line-height:1.85}
+.phase ul li:before{content:'—';color:var(--ink-3);margin-right:7px}
+.phase.now{border-color:var(--ink);box-shadow:0 0 0 2px #EEF1F8}
+.gauge{height:7px;background:#E9ECEA;border-radius:4px;overflow:hidden;margin:12px 0 6px}
+.gauge>i{display:block;height:100%;background:linear-gradient(90deg,var(--follicular),var(--fertile))}
+
+/* ── 인스펙터 ───────────────────────────── */
+.insp{width:280px;font-size:11.5px;padding-top:14px}
+.insp h4{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--ink-3);
+  text-transform:uppercase;margin-bottom:10px}
+.insp .box{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:12px;
+  padding:13px;margin-bottom:11px}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dotted var(--line)}
+.kv:last-child{border:none}
+.kv b{font-weight:500;color:var(--ink-2);font-size:11px}
+.kv span{font-family:var(--mono);font-size:11px;color:var(--ink);text-align:right}
+.caseswitch{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:4px}
+.caseswitch button{padding:8px 6px;border:1px solid var(--line);border-radius:8px;background:#fff;
+  font-family:var(--mono);font-size:10px;color:var(--ink-2);text-align:left;line-height:1.4}
+.caseswitch button:hover{border-color:var(--ink-3)}
+.caseswitch button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.caseswitch button em{font-style:normal;display:block;font-family:var(--sans);font-size:9.5px;opacity:.7;margin-top:1px}
+.reset{width:100%;padding:9px;border:1px dashed var(--line);border-radius:9px;
+  font-size:11px;color:var(--ink-3);background:transparent}
+
+@media (max-width:1000px){
+  body{padding:18px 14px 50px}
+  .brief,.insp{width:min(392px,100%)}
+}
+</style>
+</head>
+<body>
+
+<aside class="brief">
+  <div class="mark">freyaX · prototype v1.0</div>
+  <h1>몸의 주기를<br>읽는 법부터.</h1>
+  <p>회원가입 설문 12문항으로 사용자를 10개 케이스 중 하나로 분류하고, 그 케이스에 맞는 메인화면을 띄웁니다. 오른쪽 패널에서 분류 규칙과 점수 계산이 실시간으로 어떻게 도는지 확인할 수 있습니다.</p>
+  <div class="legend">
+    <b>CYCLE PHASE</b>
+    <div class="swatch"><i style="background:#8C2F3D"></i>생리기</div>
+    <div class="swatch"><i style="background:#1F8C80"></i>난포기</div>
+    <div class="swatch"><i style="background:#D6255E"></i>가임기 · 배란일</div>
+    <div class="swatch"><i style="background:#6A54A8"></i>황체기</div>
+    <div class="swatch"><i style="background:#2B4C8C"></i>정자 생성주기 (남성 90일)</div>
+  </div>
+</aside>
+
+<div class="phone">
+  <div class="statusbar"><span>9:41</span><span id="sbRight">freyaX</span></div>
+  <div class="screen" id="screen"></div>
+  <nav class="tabs" id="tabs" style="display:none"></nav>
+</div>
+
+<aside class="insp">
+  <h4>Engine Inspector</h4>
+  <div class="box" id="inspA">
+    <div class="kv"><b>상태</b><span>대기 중</span></div>
+  </div>
+  <h4>Case Switcher</h4>
+  <div class="box">
+    <div class="caseswitch" id="switcher"></div>
+    <button class="reset" id="resetBtn" style="margin-top:9px">설문부터 다시 시작</button>
+  </div>
+</aside>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   freyaX Prototype — 엔진 A(분류) · B(가임 준비 지수) · C(주기 예측) · D(모듈 배치)
+   ═══════════════════════════════════════════════════════════ */
+
+const S = { gender:null, a:{}, qi:0, stage:null, rule:null, why:'', fri:null, layers:[], tab:'home',
+            intro:0, view:'intro', done:{}, demo:false };
+
+/* ── 설문 정의 ───────────────────────────── */
+const QF = [
+ {id:'age',type:'num',min:24,max:45,def:32,unit:'세',t:'만 나이를 알려주세요',
+  s:'35세를 기준으로 난임 검사 권고 시점이 달라집니다.'},
+ {id:'stage',type:'single',t:'지금 어떤 단계인가요?',s:'가장 가까운 하나를 골라주세요.',o:[
+   ['start','이제 막 준비를 시작했어요'],['trying','자연임신을 시도하고 있어요'],
+   ['clinic','병원에서 검사·상담 중이에요'],['iui','인공수정(IUI)을 준비/진행 중이에요'],
+   ['ivf','시험관(IVF)을 준비/진행 중이에요'],['rest','시술을 쉬는 중이에요']]},
+ {id:'ttp',type:'single',t:'임신을 시도한 기간은 얼마나 됐나요?',s:'피임하지 않고 시도한 기간 기준입니다.',
+  when:a=>['start','trying','clinic'].includes(a.stage),o:[
+   ['0','3개월 미만'],['3','3~6개월'],['6','6~12개월'],['12','1~2년'],['24','2년 이상']]},
+ {id:'round',type:'single',t:'몇 차수째인가요?',s:'차수별 커뮤니티와 일정 템플릿을 맞춰드립니다.',
+  when:a=>['iui','ivf'].includes(a.stage),o:[['1','1차'],['2','2차'],['3','3차 이상']]},
+ {id:'proto',type:'single',t:'프로토콜을 알고 계신가요?',s:'모르셔도 괜찮습니다. 일정만으로도 관리할 수 있어요.',
+  when:a=>a.stage==='ivf',o:[['long','장기요법'],['short','단기요법'],['nat','자연주기'],['unknown','잘 모르겠어요']]},
+ {id:'restplan',type:'single',t:'다음 차수 계획이 있으신가요?',s:'답에 따라 알림 빈도를 조절합니다.',
+  when:a=>a.stage==='rest',o:[['yes','일정이 잡혀 있어요'],['undecided','아직 미정이에요'],['pause','당분간 쉬려고 해요']]},
+ {id:'parity',type:'single',t:'출산 경험이 있으신가요?',s:'둘째 이상 준비는 필요한 정보가 다릅니다.',
+  o:[['0','없어요'],['1','1명'],['2','2명 이상']]},
+ {id:'cycle',type:'single',t:'생리주기는 어떤 편인가요?',s:'예측 정확도와 표시 방식이 여기서 결정됩니다.',o:[
+   ['reg','규칙적이에요 (24~35일, 오차 3일 이내)'],['mild','조금 불규칙해요 (오차 4~7일)'],
+   ['long','주기가 긴 편이에요 (35일 초과)'],['irr','많이 불규칙해요 (오차 8일 이상)'],
+   ['none','3개월 이상 생리가 없어요'],['unknown','잘 모르겠어요']]},
+ {id:'dx',type:'multi',t:'진단받은 적 있는 항목이 있나요?',s:'복수 선택 가능. 없으면 넘어가세요.',o:[
+   ['pcos','다낭성난소증후군(PCOS)'],['endo','자궁내막증'],['tube','난관(나팔관) 이상'],
+   ['myoma','자궁근종·용종'],['dor','난소기능저하 (AMH 낮음)'],['thyroid','갑상선 질환'],
+   ['mc2','유산 2회 이상'],['none','해당 없음']]},
+ {id:'body',type:'body',t:'키와 몸무게를 알려주세요',s:'체성분은 배란과 직접 연결되는 지표입니다.'},
+ {id:'diet',type:'single',t:'식습관은 어떤가요?',o:[
+   ['good','규칙적으로 세 끼 먹어요'],['skip','불규칙하고 자주 걸러요'],
+   ['late','야식·배달이 잦아요'],['diet','다이어트 중이에요']]},
+ {id:'ex',type:'single',t:'운동은 얼마나 하세요?',o:[
+   ['0','거의 안 해요'],['1','주 1~2회'],['3','주 3~4회'],['5','주 5회 이상']]},
+ {id:'sleep',type:'single',t:'하루 평균 수면 시간은요?',o:[
+   ['5','6시간 미만'],['6','6~7시간'],['7','7~8시간'],['8','8시간 이상']]},
+ {id:'goal',type:'multi',max:2,t:'가장 도움받고 싶은 것은?',s:'최대 2개까지 고를 수 있어요.',o:[
+   ['fw','가임기를 정확히 알기'],['body','몸 만들기·체중 관리'],['sched','시술 일정 관리'],
+   ['mind','마음 관리'],['expert','전문가 상담'],['partner','파트너와 함께하기']]},
+ {id:'partner',type:'single',t:'파트너와 함께 관리할까요?',s:'연결하면 서로의 상태와 체크리스트가 공유됩니다.',
+  o:[['now','지금 초대할게요'],['later','나중에 할게요']]}
+];
+
+const QM = [
+ {id:'age',type:'num',min:24,max:49,def:34,unit:'세',t:'만 나이를 알려주세요',
+  s:'정자 지표는 40세 전후로 변화 폭이 커집니다.'},
+ {id:'stage',type:'single',t:'두 분은 지금 어떤 단계인가요?',s:'파트너 기준으로 골라주세요.',o:[
+   ['start','이제 막 준비를 시작했어요'],['trying','자연임신을 시도하고 있어요'],
+   ['clinic','병원에서 검사·상담 중이에요'],['iui','인공수정(IUI)을 준비/진행 중이에요'],
+   ['ivf','시험관(IVF)을 준비/진행 중이에요'],['rest','시술을 쉬는 중이에요']]},
+ {id:'ttp',type:'single',t:'임신을 시도한 기간은 얼마나 됐나요?',
+  when:a=>['start','trying','clinic'].includes(a.stage),o:[
+   ['0','3개월 미만'],['3','3~6개월'],['6','6~12개월'],['12','1~2년'],['24','2년 이상']]},
+ {id:'parity',type:'single',t:'자녀가 있으신가요?',o:[['0','없어요'],['1','1명'],['2','2명 이상']]},
+ {id:'sa',type:'single',t:'정액검사를 받아보신 적 있나요?',
+  s:'난임 원인의 약 40%가 남성 요인입니다. 이 답이 가장 중요한 질문입니다.',o:[
+   ['normal','받았고, 정상이었어요'],['abnormal','받았고, 이상 소견이 있었어요'],
+   ['unsure','받았지만 결과를 잘 모르겠어요'],['never','아직 안 받아봤어요']]},
+ {id:'body',type:'body',t:'키와 몸무게를 알려주세요',s:'체중은 정자 생성에 직접 영향을 줍니다.'},
+ {id:'habit',type:'multi',t:'해당하는 습관을 모두 골라주세요',s:'열 노출과 산화 스트레스가 핵심 변수입니다.',o:[
+   ['smoke','흡연'],['drink','주 3회 이상 음주'],['sauna','사우나·찜질방 주 1회 이상'],
+   ['sit','하루 8시간 이상 앉아 있음'],['none','해당 없음']]},
+ {id:'ex',type:'single',t:'운동과 수면은 어떤가요?',o:[
+   ['good','운동 주 3회 이상 · 수면 7시간 이상'],['mid','운동 주 1~2회 · 수면 6~7시간'],
+   ['low','거의 운동 안 함 · 수면 6시간 미만'],['irr','교대근무 등으로 매우 불규칙']]},
+ {id:'partner',type:'single',t:'파트너와 연결할까요?',s:'파트너의 주기와 내 90일 사이클이 함께 보입니다.',
+  o:[['now','초대코드 입력할게요'],['later','나중에 할게요']]}
+];
+
+const q = () => (S.gender==='F'?QF:QM).filter(x=>!x.when||x.when(S.a));
+
+/* ── 엔진 A · 단계 분류 (결정형 규칙 트리) ─── */
+const RULES = [
+ ['R0','임신 확인(hCG 양성) 등록 여부','EXIT'],
+ ['R1','시험관(IVF) 진행·준비 상태인가','S4'],
+ ['R2','인공수정(IUI) 진행·예정 상태인가','S3'],
+ ['R3','시술 종료 후 다음 일정 미등록 상태인가','S5'],
+ ['R4','병원 검사·상담 진행 또는 난임 진단 보유','S2'],
+ ['R5','35세 미만 12개월↑ / 35세 이상 6개월↑ 시도','S2'],
+ ['R6','시도 3개월↑ 이면서 위험신호 1개 이상 보유','S2'],
+ ['R7','위 조건에 모두 해당하지 않음','S1']
+];
+
+function redFlags(a){
+  const f=[];
+  if(a.cycle==='irr') f.push('주기 변동 8일 이상');
+  if(a.cycle==='long') f.push('주기 35일 초과');
+  if(a.cycle==='none') f.push('3개월 이상 무월경');
+  const dx=a.dx||[];
+  const nm={pcos:'다낭성난소증후군',endo:'자궁내막증',tube:'난관 이상',dor:'난소기능저하',thyroid:'갑상선 질환',mc2:'반복 유산'};
+  dx.forEach(d=>{ if(nm[d]) f.push(nm[d]); });
+  if(a.sa==='abnormal') f.push('정액검사 이상 소견');
+  if(Number(a.age)>=38) f.push('만 38세 이상');
+  return f;
+}
+
+function classify(a){
+  const age=Number(a.age||32);
+  const ttp = a.ttp!=null ? Number(a.ttp) : (['iui','ivf','rest'].includes(a.stage)?24:0);
+  const flags=redFlags(a);
+  const R=(i,stage,why)=>({hit:i,stage,why,flags});
+  if(a.stage==='ivf')  return R(1,'S4','시험관(IVF) 진행·준비를 직접 선택했습니다.');
+  if(a.stage==='iui')  return R(2,'S3','인공수정(IUI) 진행·준비를 직접 선택했습니다.');
+  if(a.stage==='rest') return R(3,'S5','시술을 쉬는 중이라고 답하셨습니다.');
+  if(a.stage==='clinic') return R(4,'S2','병원 검사·상담 단계에 계십니다.');
+  if(age<35 && ttp>=12) return R(5,'S2','35세 미만 기준 12개월 이상 시도하셨습니다.');
+  if(age>=35 && ttp>=6) return R(5,'S2','35세 이상 기준 6개월 이상 시도하셨습니다.');
+  if(ttp>=3 && flags.length>0) return R(6,'S2','시도 3개월 이상이면서 위험신호가 확인됐습니다: '+flags[0]);
+  return R(7,'S1','아직 임상 기준상 검사 시점이 아닙니다. 타이밍 최적화 단계입니다.');
+}
+
+/* ── 엔진 B · 가임 준비 지수 ──────────────── */
+function bmiOf(a){ const h=Number(a.h||0)/100,w=Number(a.w||0); return (h>0&&w>0)?w/(h*h):null; }
+function d2Score(b){ if(b==null) return 70;
+  if(b<18.5) return 60; if(b<23) return 100; if(b<25) return 85;
+  if(b<27.5) return 70; if(b<30) return 55; return 35; }
+function friOf(a,g){
+  const b=bmiOf(a), age=Number(a.age||32);
+  const ttp = a.ttp!=null?Number(a.ttp):24;
+  let d1;
+  if(g==='F') d1={reg:95,mild:70,long:58,irr:42,none:20,unknown:60}[a.cycle]??60;
+  else d1={normal:100,abnormal:55,unsure:60,never:30}[a.sa]??30;
+  const d2=d2Score(b);
+  let d3;
+  if(g==='F'){
+    const diet={good:100,skip:55,late:45,diet:70}[a.diet]??60;
+    const ex={'0':35,'1':65,'3':90,'5':100}[a.ex]??50;
+    const sl={'5':40,'6':65,'7':95,'8':90}[a.sleep]??60;
+    d3=Math.round((diet+ex+sl)/3);
+  }else{
+    const base={good:95,mid:70,low:45,irr:40}[a.ex]??60;
+    const h=a.habit||[]; let pen=0;
+    if(h.includes('smoke'))pen+=25; if(h.includes('drink'))pen+=12;
+    if(h.includes('sauna'))pen+=10; if(h.includes('sit'))pen+=8;
+    d3=Math.max(15,base-pen);
+  }
+  const flags=redFlags(a).length;
+  const d4=Math.max(30,100-15*flags);
+  let d5=100;
+  if(age>=38)d5=40; else if(age>=36)d5=60; else if(age>=33)d5=80;
+  if(ttp>=24)d5=Math.max(20,d5-20);
+  const d6=50;
+  const W = g==='F' ? {d1:.25,d2:.20,d3:.25,d4:.15,d5:.10,d6:.05}
+                    : {d1:.20,d2:.20,d3:.30,d4:.15,d5:.10,d6:.05};
+  const total=Math.round(d1*W.d1+d2*W.d2+d3*W.d3+d4*W.d4+d5*W.d5+d6*W.d6);
+  const dom=[{k:g==='F'?'주기 안정성':'검사 이행도',v:d1,w:W.d1},{k:'체성분',v:d2,w:W.d2},
+             {k:'생활습관',v:d3,w:W.d3},{k:'위험요인',v:d4,w:W.d4},
+             {k:'시간 압박',v:d5,w:W.d5},{k:'참여도',v:d6,w:W.d6}];
+  const actionable = g==='F' ? ['체성분','생활습관'] : ['체성분','생활습관','검사 이행도'];
+  const weak=[...dom].filter(d=>actionable.includes(d.k))
+                     .sort((x,y)=>((100-y.v)*y.w)-((100-x.v)*x.w))[0] || dom[0];
+  const gain=Math.max(3,Math.round((100-weak.v)*weak.w*0.65));
+  return {total,dom,weak,gain,bmi:b};
+}
+
+/* ── 엔진 C · 주기·배란 예측 ──────────────── */
+function cycleModel(a){
+  const map={reg:{len:28,sd:1.5},mild:{len:30,sd:4},long:{len:36,sd:5},irr:{len:38,sd:9},none:{len:null,sd:null},unknown:{len:29,sd:5}};
+  const m=map[a.cycle]||map.unknown;
+  const pcos=(a.dx||[]).includes('pcos');
+  const confirmMode = m.sd===null || m.sd>8 || pcos;
+  const w = m.sd? Math.min(8,Math.max(3,Math.round(2*m.sd))) : null;
+  return {...m,confirmMode,width:w,pcos};
+}
+
+/* ── 레이어 ─────────────────────────────── */
+function layersOf(a,g){
+  const L=[]; const b=bmiOf(a);
+  if(Number(a.parity||0)>0) L.push({k:'P1+',t:'둘째 이상 준비'});
+  const f=redFlags(a); if(f.length) L.push({k:'R',t:'위험신호 '+f.length+'개'});
+  if(b!=null&&b>=25) L.push({k:'BMI+',t:'체중 관리 우선'});
+  if(b!=null&&b<18.5) L.push({k:'BMI−',t:'저체중 · 감량 차단'});
+  if(a.partner==='now') L.push({k:'L',t:'파트너 연결됨'});
+  if((a.dx||[]).includes('pcos')) L.push({k:'PCOS',t:'배란 확인 모드'});
+  return L;
+}
+
+/* ── 케이스별 홈 콘텐츠 ──────────────────── */
+const CASE = {
+ 'F-S1':{name:'자연임신 시도 초기',blurb:'타이밍을 정확하게 맞추는 단계',
+   hero:'ring',
+   todo:[['오늘 컨디션 기록','체온·증상 30초'],['엽산 400㎍','매일 같은 시간에'],['가임기 알림 켜기','예측일 3일 전부터']],
+   content:[['배란일 전후, 언제가 가장 좋을까','타이밍'],['임신 준비 첫 3개월 체크리스트','기초'],['카페인과 임신 준비','영양']]},
+ 'F-S2':{name:'자연임신 지연 · 난임 경계',blurb:'검사와 진료를 결정할 시점',
+   hero:'ring',warn:'임상 가이드라인상 검사를 권고하는 시점에 도달했습니다. 원인의 40%는 남성 요인이므로 두 분이 함께 받는 것이 좋습니다.',
+   todo:[['난임 기초검사 항목 확인','초음파·호르몬·난관조영술',1],['파트너 정액검사 권유하기','가장 간단하고 빠른 검사',1],['가까운 병원 찾아보기','평가 결과 공개 기관']],
+   content:[['난임 검사, 무엇을 어떤 순서로 받나','검사'],['건강보험·정부지원 정리 2026','비용'],['병원 고를 때 실제로 볼 것','선택']]},
+ 'F-S3':{name:'인공수정(IUI) 준비·진행',blurb:'시술 성공률을 끌어올리는 준비',
+   hero:'dday',ddayLabel:'다음 시술일까지',dday:9,
+   todo:[['배란유도제 복용','오늘 21:00'],['시술 전 준비 체크리스트','7개 중 3개 완료'],['파트너 금욕 기간 안내','시술 2~3일 전부터']],
+   content:[['인공수정 절차, 하루 동선 그대로','절차'],['시술 전날 하면 좋은 것','준비'],['IUI 이후 2주, 무엇을 조심하나','관리']]},
+ 'F-S4':{name:'체외수정(IVF) 준비·진행',blurb:'일정 정확도가 결과를 좌우합니다',
+   hero:'proto',
+   todo:[['자가주사','오늘 20:00 · 정시 투여 중요',1],['내일 초음파 진료','09:30 · OO여성병원'],['채취 전 금식 안내 확인','채취일 D-4']],
+   content:[['장기요법 일정, 한 장으로 보기','프로토콜'],['난자 채취 전후 관리','시술'],['이식 후 2주를 보내는 법','대기']]},
+ 'F-S5':{name:'시술 후 · 휴지기',blurb:'몸과 마음을 회복하는 시간',
+   hero:'recover',quiet:'지금은 다음 일정을 정하지 않아도 괜찮습니다. 알림은 하루 한 번 이하로 줄여두었어요.',
+   todo:[['회복 루틴 — 가벼운 산책','20분이면 충분해요'],['이번 차수 기록 정리해두기','다음 상담에 도움이 됩니다']],
+   content:[['시술이 잘 되지 않았을 때의 마음','마음'],['다음 선택지 비교해보기','결정'],['지원금과 횟수, 지금 상태 확인','제도']]},
+ 'M-S1':{name:'자연임신 시도 초기 (남성)',blurb:'오늘의 습관이 90일 뒤 정자에 반영됩니다',
+   hero:'sperm',
+   todo:[['오늘 금연·절주 체크','연속 12일째'],['사우나·오래 앉기 피하기','열 노출 관리'],['파트너 가임기 확인','D-4']],
+   content:[['정자는 왜 90일이 걸리나','기초'],['정자 건강에 실제로 효과 있는 것','생활'],['정액검사, 언제 받는 게 좋을까','검사']]},
+ 'M-S2':{name:'난임 경계 (남성)',blurb:'검사가 가장 빠른 길입니다',
+   hero:'sperm',warn:'아직 정액검사를 받지 않으셨습니다. 난임 원인의 약 40%가 남성 요인이고, 검사는 하루면 끝납니다.',
+   todo:[['정액검사 예약하기','2~3일 금욕 후 방문',1],['비뇨의학과 찾아보기','가까운 곳 3곳'],['금연 시작일 기록','3개월 후 재검사 예약']],
+   content:[['정액검사 결과 읽는 법','검사'],['금연 3개월이 만드는 변화','생활'],['남성 난임, 오해와 사실','기초']]},
+ 'M-S3':{name:'인공수정(IUI) · 남성',blurb:'채취일 컨디션이 핵심입니다',
+   hero:'dday',ddayLabel:'파트너 시술일까지',dday:9,
+   todo:[['금욕 시작 (2~3일)','D-3부터',1],['채취 당일 동선 확인','09:00 도착'],['컨디션 관리 — 수면 7시간','']],
+   content:[['채취 전 준비, 무엇이 영향을 주나','준비'],['같이 가야 할까? 실제 동선','절차']]},
+ 'M-S4':{name:'체외수정(IVF) · 남성',blurb:'파트너 일정에 맞춰 움직입니다',
+   hero:'dday',ddayLabel:'난자·정자 채취일까지',dday:4,
+   todo:[['금욕 시작','오늘부터 3일',1],['채취일 09:00 병원 동행','일정 등록됨'],['이번 주 음주 없음','2일째 유지']],
+   content:[['채취일 남성 동선 정리','절차'],['이 시기에 도움이 되는 습관','관리'],['파트너에게 필요한 말','관계']]},
+ 'M-S5':{name:'휴지기 · 남성',blurb:'다음 90일을 다시 시작합니다',
+   hero:'sperm',quiet:'파트너의 회복이 우선인 시기입니다. 재촉하지 않고 기다리는 것도 관리입니다.',
+   todo:[['90일 사이클 리셋 확인','새 주기 D+6'],['3개월 후 재검사 예약해두기','']],
+   content:[['다시 시작하는 90일 계획','계획'],['파트너와 대화하는 법','관계']]}
+};
+
+/* ── 렌더 헬퍼 ───────────────────────────── */
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstElementChild;};
+const scr=document.getElementById('screen');
+const tabsEl=document.getElementById('tabs');
+function paint(html){scr.innerHTML=html;scr.scrollTop=0;}
+
+function ringSVG(cm,day){
+  const len=cm.len||30, r=44, C=2*Math.PI*r;
+  const seg=(f,t,c)=>{const a=(f/len)*C,b=((t-f)/len)*C;
+    return `<circle cx="56" cy="56" r="${r}" fill="none" stroke="${c}" stroke-width="9"
+      stroke-dasharray="${b} ${C-b}" stroke-dashoffset="${-a}" transform="rotate(-90 56 56)"/>`;};
+  const ov=len-14, f1=Math.max(0,ov-5), f2=ov+1;
+  const ang=(day/len)*360-90, rad=ang*Math.PI/180;
+  const mx=56+Math.cos(rad)*r, my=56+Math.sin(rad)*r;
+  return `<svg width="112" height="112" viewBox="0 0 112 112">
+    <circle cx="56" cy="56" r="${r}" fill="none" stroke="#E9ECEA" stroke-width="9"/>
+    ${seg(0,5,'#8C2F3D')}${seg(5,f1,'#1F8C80')}${seg(f1,f2,'#D6255E')}${seg(f2,len,'#6A54A8')}
+    <circle cx="${mx}" cy="${my}" r="6.5" fill="#fff" stroke="#16204A" stroke-width="2.5"/>
+  </svg>`;
+}
+function spermBar(d){
+  const p=Math.min(100,d/90*100), fp=74/90*100;
+  return `<div style="margin-top:4px">
+    <div style="height:11px;border-radius:6px;background:#E9ECEA;position:relative;overflow:hidden">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:${fp}%;background:#DCE3F0"></div>
+      <div style="position:absolute;left:${fp}%;top:0;bottom:0;right:0;background:#EDE4F3"></div>
+      <div style="position:absolute;left:0;top:0;bottom:0;width:${p}%;background:var(--sperm);border-radius:6px"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:6px">
+      <span>D0 형성 시작</span><span>D74 성숙</span><span>D90 완료</span></div></div>`;
+}
+
+/* ── 화면: 온보딩 ───────────────────────── */
+const INTRO=[
+ {t:'내 몸의 주기를<br>먼저 읽습니다.',p:'생리주기는 임신을 위한 달력이기 전에, 몸 상태를 알려주는 가장 정확한 신호입니다. freyaX는 그 신호를 읽는 것부터 시작합니다.'},
+ {t:'준비 단계마다<br>필요한 게 다릅니다.',p:'시도 1개월차와 시험관 3차는 완전히 다른 도움이 필요합니다. 12문항으로 지금 어디에 계신지 파악하고, 그에 맞는 화면을 만들어 드립니다.'},
+ {t:'혼자 하지 않도록.',p:'난임 원인의 약 40%는 남성 요인입니다. 파트너를 연결하면 서로의 주기가 겹쳐 보이고, 체크리스트를 함께 채웁니다.'}
+];
+function renderIntro(){
+  const i=S.intro,d=INTRO[i];
+  const plots=[
+    `<svg viewBox="0 0 300 150" width="100%" height="150">
+      <g stroke="#DDE4DD" stroke-width="1">${[...Array(6)].map((_,k)=>`<line x1="0" y1="${k*30}" x2="300" y2="${k*30}"/>`).join('')}</g>
+      <path d="M0,110 C40,108 60,112 90,106 C110,102 118,60 140,52 C165,44 190,50 215,46 C245,42 270,48 300,44"
+        fill="none" stroke="#16204A" stroke-width="2"/>
+      <circle cx="140" cy="52" r="5" fill="#D6255E"/>
+      <text x="148" y="44" font-family="IBM Plex Mono" font-size="10" fill="#D6255E">배란</text></svg>`,
+    `<svg viewBox="0 0 300 150" width="100%" height="150">
+      ${['S1','S2','S3','S4','S5'].map((s,k)=>`
+        <rect x="${k*58+6}" y="${[70,44,84,30,96][k]}" width="42" height="${[62,88,48,102,36][k]}" rx="5"
+          fill="${k===3?'#16204A':'#DCE3F0'}"/>
+        <text x="${k*58+27}" y="146" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#8A93AC">${s}</text>`).join('')}</svg>`,
+    `<svg viewBox="0 0 300 150" width="100%" height="150">
+      <circle cx="112" cy="72" r="46" fill="none" stroke="#D6255E" stroke-width="8" opacity=".85"/>
+      <rect x="150" y="64" width="140" height="16" rx="8" fill="#2B4C8C" opacity=".85"/>
+      <text x="112" y="140" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#D6255E">28일 주기</text>
+      <text x="220" y="140" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#2B4C8C">90일 주기</text></svg>`
+  ];
+  paint(`<div class="intro">
+    <div class="eyebrow">freyaX · ${String(i+1).padStart(2,'0')} / 03</div>
+    <div class="plot">${plots[i]}</div>
+    <h2>${d.t}</h2><p>${d.p}</p>
+    <div class="dots">${INTRO.map((_,k)=>`<i class="${k<=i?'on':''}"></i>`).join('')}</div>
+    <button class="btn" id="nx">${i<2?'다음':'시작하기'}</button></div>`);
+  document.getElementById('nx').onclick=()=>{ if(S.intro<2){S.intro++;renderIntro();} else {S.view='gender';renderGender();} };
+}
+
+function renderGender(){
+  paint(`<div class="pad" style="padding-top:44px">
+    <div class="eyebrow">STEP 01</div>
+    <div class="qtitle">어느 쪽으로 함께할까요?</div>
+    <div class="qsub">성별에 따라 화면의 시간 단위가 달라집니다. 여성은 28일 생리주기, 남성은 90일 정자 생성주기를 기준으로 관리합니다.</div>
+    <button class="opt" data-g="F"><span class="dot"></span>
+      <span><b style="font-weight:600">여성</b><br><span style="font-size:11.5px;color:var(--ink-3)">생리주기 · 가임기 · 시술 일정 중심</span></span></button>
+    <button class="opt" data-g="M"><span class="dot"></span>
+      <span><b style="font-weight:600">남성</b><br><span style="font-size:11.5px;color:var(--ink-3)">90일 정자 생성주기 · 검사 · 파트너 동기화</span></span></button>
+    <div style="margin-top:22px;font-size:11.5px;color:var(--ink-3);line-height:1.7">
+      건강 정보는 민감정보로 분류됩니다. 수집 항목과 목적은 다음 화면에서 따로 안내하고 개별 동의를 받습니다.</div></div>`);
+  scr.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{
+    S.gender=b.dataset.g; S.a={}; S.qi=0; S.view='q'; renderQ(); });
+}
+
+/* ── 화면: 설문 ─────────────────────────── */
+function renderQ(){
+  const list=q();
+  if(S.qi>=list.length){ S.view='trace'; return renderTrace(); }
+  const Q=list[S.qi], pct=Math.round(S.qi/list.length*100);
+  let body='';
+  if(Q.type==='single'||Q.type==='multi'){
+    const cur=S.a[Q.id];
+    body=Q.o.map(([v,l])=>{
+      const sel=Q.type==='multi'?((cur||[]).includes(v)):(cur===v);
+      return `<button class="opt ${Q.type==='multi'?'sq':''} ${sel?'sel':''}" data-v="${v}"><span class="dot"></span><span>${l}</span></button>`;
+    }).join('');
+  } else if(Q.type==='num'){
+    const v=S.a[Q.id]??Q.def;
+    body=`<div class="numwrap"><div class="numval" id="nv">${v}<span>${Q.unit}</span></div>
+      <input type="range" id="rg" min="${Q.min}" max="${Q.max}" value="${v}"></div>`;
+  } else if(Q.type==='body'){
+    body=`<div class="bodygrid">
+      <div><label>HEIGHT (cm)</label><input id="ih" type="number" value="${S.a.h??163}"></div>
+      <div><label>WEIGHT (kg)</label><input id="iw" type="number" value="${S.a.w??72}"></div></div>
+      <div class="bmiout" id="bo"></div>`;
+  }
+  const canNext = Q.type==='num'||Q.type==='body' || (Q.type==='multi'? (S.a[Q.id]||[]).length>0 : !!S.a[Q.id]);
+  paint(`<div class="qhead">
+      <div class="prog"><i style="width:${pct}%"></i></div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <button class="eyebrow" id="bk" style="letter-spacing:.14em">${S.qi>0?'← 이전':''}</button>
+        <span class="eyebrow">${String(S.qi+1).padStart(2,'0')} / ${String(list.length).padStart(2,'0')}</span></div>
+      <div class="qtitle">${Q.t}</div>${Q.s?`<div class="qsub">${Q.s}</div>`:'<div style="height:10px"></div>'}
+    </div>
+    <div class="pad">${body}
+      <button class="btn" id="nx" style="margin-top:18px" ${canNext?'':'disabled'}>다음</button></div>`);
+
+  const next=()=>{S.qi++;renderQ();};
+  const nb=document.getElementById('nx');
+  scr.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{
+    if(Q.type==='multi'){
+      let cur=S.a[Q.id]||[]; const v=b.dataset.v;
+      if(v==='none'){cur=['none'];}
+      else{ cur=cur.filter(x=>x!=='none');
+        cur = cur.includes(v)? cur.filter(x=>x!==v) : (Q.max&&cur.length>=Q.max? cur : [...cur,v]); }
+      S.a[Q.id]=cur; renderQ();
+    } else { S.a[Q.id]=b.dataset.v; setTimeout(next,170); }
+  });
+  const rg=document.getElementById('rg');
+  if(rg){ S.a[Q.id]=S.a[Q.id]??Q.def;
+    rg.oninput=()=>{document.getElementById('nv').innerHTML=rg.value+`<span>${Q.unit}</span>`;S.a[Q.id]=rg.value;}; }
+  const ih=document.getElementById('ih');
+  if(ih){ const iw=document.getElementById('iw'), bo=document.getElementById('bo');
+    const up=()=>{S.a.h=ih.value;S.a.w=iw.value;const b=bmiOf(S.a);
+      bo.textContent=b?`BMI ${b.toFixed(1)} · ${b<18.5?'저체중':b<23?'정상':b<25?'과체중 경계':b<27.5?'과체중':'비만'}`:'';};
+    ih.oninput=up;iw.oninput=up;up(); }
+  if(nb) nb.onclick=next;
+  const bk=document.getElementById('bk');
+  if(bk) bk.onclick=()=>{ if(S.qi>0){S.qi--;renderQ();} };
+  updateInsp();
+}
+
+/* ── 화면: 규칙 트리 연산 ────────────────── */
+function renderTrace(){
+  const r=classify(S.a);
+  S.stage=r.stage; S.rule='R'+r.hit; S.why=r.why;
+  S.fri=friOf(S.a,S.gender); S.layers=layersOf(S.a,S.gender);
+  paint(`<div class="trace">
+    <div class="eyebrow">ENGINE A · RULE TREE</div>
+    <h3 style="margin-top:8px">분류 규칙을 확인하고 있습니다</h3>
+    <div class="sub">위에서부터 평가해, 처음 만족하는 규칙에서 멈춥니다.</div>
+    <div id="rl">${RULES.map((x,i)=>`<div class="rule" data-i="${i}">
+      <span class="code">${x[0]}</span><span class="txt">${x[1]}</span><span class="res">${x[2]}</span></div>`).join('')}</div>
+    <div id="fin" style="opacity:0;transition:opacity .4s;margin-top:20px"></div></div>`);
+  const rows=[...scr.querySelectorAll('.rule')];
+  let i=0;
+  const step=()=>{
+    if(i>r.hit){
+      const f=document.getElementById('fin');
+      f.innerHTML=`<div class="card" style="border-color:var(--ink)">
+        <div class="eyebrow">MATCHED</div>
+        <div style="font-family:var(--mono);font-size:20px;margin:6px 0 4px">${S.rule} → ${r.stage}</div>
+        <div style="font-size:12.5px;line-height:1.7;color:var(--ink-2)">${r.why}</div></div>
+        <button class="btn" id="go">결과 보기</button>`;
+      f.style.opacity=1;
+      document.getElementById('go').onclick=()=>{S.view='result';renderResult();};
+      updateInsp(); return;
+    }
+    rows[i].classList.add('shown');
+    if(i===r.hit) rows[i].classList.add('hit');
+    i++; setTimeout(step, i===r.hit+1?420:190);
+  };
+  setTimeout(step,240);
+}
+
+/* ── 화면: 결과 ─────────────────────────── */
+function renderResult(){
+  const key=S.gender+'-'+S.stage, c=CASE[key], f=S.fri, cm=cycleModel(S.a);
+  paint(`<div class="result">
+    <div class="stagecode">CASE ${key}</div>
+    <div class="stagename">${c.name}</div>
+    <div style="font-size:13px;color:var(--ink-2);line-height:1.7">${S.why}</div>
+    <div class="card" style="margin-top:20px">
+      <div class="eyebrow">가임 준비 지수</div>
+      <div class="friring">
+        <div><div class="n">${f.total}</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-top:3px">/ 100</div></div>
+        <div style="flex:1;font-size:12px;line-height:1.7;color:var(--ink-2)">
+          가장 큰 기회는 <b style="color:var(--fertile)">${f.weak.k}</b>입니다.<br>
+          여기를 개선하면 지수가 약 <b>+${f.gain}점</b> 올라갑니다.</div></div>
+      <div class="bars">${f.dom.map(d=>`<div class="barrow"><span class="lb">${d.k}</span>
+        <span class="tr"><i style="width:${d.v}%;background:${d.v<55?'var(--amber)':'var(--ink)'}"></i></span>
+        <span class="vl">${d.v}</span></div>`).join('')}</div>
+      <div style="font-size:10.5px;color:var(--ink-3);line-height:1.6;margin-top:10px;border-top:1px solid var(--line);padding-top:9px">
+        이 지수는 임신 가능성을 예측하는 값이 아니라, 지금 관리할 수 있는 영역을 보여주는 지표입니다.</div>
+    </div>
+    ${S.layers.length?`<div class="card"><div class="eyebrow">적용된 레이어</div>
+      <div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:6px">
+      ${S.layers.map(l=>`<span class="tag ${l.k==='R'||l.k==='PCOS'?'amb':''}">${l.k} · ${l.t}</span>`).join('')}</div>
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-top:10px">
+      레이어는 화면을 바꾸지 않고 모듈 구성만 조정합니다.</div></div>`:''}
+    ${cm.confirmMode?`<div class="warn"><b>배란 확인 모드로 설정했습니다.</b><br>
+      주기 변동이 커서 날짜 예측 대신 배란 확인을 먼저 도와드릴게요. 가임기 D-day는 표시하지 않습니다.</div>`:''}
+    <button class="btn" id="go" style="margin-top:6px">내 홈으로 들어가기</button></div>`);
+  document.getElementById('go').onclick=()=>{S.view='home';S.tab='home';renderApp();};
+  updateInsp();
+}
+
+/* ── 화면: 앱 (탭 구조) ──────────────────── */
+function renderApp(){
+  tabsEl.style.display='flex';
+  const T=[['home','홈'],['cal','캘린더'],['ch','챌린지'],['co','커뮤니티'],['pt','파트너']];
+  tabsEl.innerHTML=T.map(([k,l])=>`<button data-t="${k}" class="${S.tab===k?'on':''}"><span class="g"></span>${l}</button>`).join('');
+  tabsEl.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;renderApp();});
+  document.getElementById('sbRight').textContent=S.gender+'-'+S.stage;
+  ({home:renderHome,cal:renderCal,ch:renderCh,co:renderCo,pt:renderPt}[S.tab])();
+  updateInsp();
+}
+
+function heroBlock(c,cm){
+  const key=S.gender+'-'+S.stage;
+  if(c.hero==='ring'){
+    const day=cm.len? Math.round(cm.len*0.44):14;
+    const ovul=cm.len? cm.len-14:null;
+    const dTo = ovul? ovul-5-day : null;
+    return `<div class="hero"><div class="ringwrap">${ringSVG(cm,day)}
+      <div class="ringtxt">
+        ${cm.confirmMode
+          ? `<div class="big" style="font-size:22px">배란 확인 모드</div>
+             <div class="lbl">주기 변동이 커서 날짜 대신 확인을 먼저 도와드려요.<br>오늘부터 LH 테스트를 시작해 보세요.</div>`
+          : `<div class="big">주기 ${day}일차</div>
+             <div class="lbl">${dTo>0?`가임기 시작까지 <b style="color:var(--fertile)">${dTo}일</b>`
+                 :(day<=ovul+1?`<b style="color:var(--fertile)">가임기 진행 중</b> · 배란 예측 ${ovul}일차`
+                 :`이번 주기 가임기 종료 · 다음 주기 ${cm.len-day}일 후`)}<br>
+             예측 폭 ±${cm.width}일 · 정확도 ${cm.sd<=2?'높음':cm.sd<=5?'보통':'낮음'}</div>`}
+      </div></div></div>`;
+  }
+  if(c.hero==='dday'){
+    return `<div class="hero dark"><div class="eyebrow">${c.ddayLabel}</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-top:8px">
+        <span style="font-family:var(--mono);font-size:44px;font-weight:500;letter-spacing:-.03em">D-${c.dday}</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.6)">8월 15일 (토) 09:00</span></div>
+      <div style="margin-top:14px;height:5px;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden">
+        <div style="width:${100-c.dday*6}%;height:100%;background:#fff"></div></div>
+      <div style="font-size:11.5px;color:rgba(255,255,255,.66);margin-top:9px">준비 체크리스트 7개 중 3개 완료</div></div>`;
+  }
+  if(c.hero==='proto'){
+    const days=[['D1','주사'],['D3','주사'],['D5','초음파'],['D7','주사'],['D9','초음파'],['D11','트리거'],['D13','채취']];
+    return `<div class="hero dark"><div class="eyebrow">장기요법 · 2차 · 진행 중</div>
+      <div style="font-family:var(--mono);font-size:30px;margin:8px 0 3px">D+7 / 13</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.66)">다음 일정 — 내일 09:30 초음파</div>
+      <div style="display:flex;gap:4px;margin-top:15px">${days.map((d,i)=>`
+        <div style="flex:1;text-align:center">
+          <div style="height:26px;border-radius:5px;background:${i<4?'#fff':'rgba(255,255,255,.2)'}"></div>
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.55);margin-top:4px">${d[0]}</div>
+        </div>`).join('')}</div></div>`;
+  }
+  if(c.hero==='recover'){
+    return `<div class="hero"><div class="eyebrow">회복 중</div>
+      <div style="font-family:var(--mono);font-size:30px;margin:8px 0 4px;color:var(--luteal)">D+12</div>
+      <div style="font-size:12.5px;color:var(--ink-2);line-height:1.7">시술 종료 후 12일이 지났습니다.<br>다음 일정은 정해두지 않았어요.</div>
+      <div class="gauge" style="margin-top:14px"><i style="width:42%;background:var(--luteal)"></i></div>
+      <div style="font-size:11px;color:var(--ink-3)">몸 회복 · 일반적으로 1~2주기 필요</div></div>`;
+  }
+  const d=37;
+  return `<div class="hero"><div class="eyebrow">정자 생성 주기</div>
+    <div style="display:flex;align-items:baseline;gap:9px;margin:8px 0 2px">
+      <span style="font-family:var(--mono);font-size:34px;font-weight:500;color:var(--sperm)">D+${d}</span>
+      <span style="font-size:12px;color:var(--ink-3)">/ 90일</span></div>
+    <div style="font-size:12px;color:var(--ink-2);line-height:1.65">오늘의 습관이 정액검사에 반영되는 날 — <b>10월 24일</b></div>
+    ${spermBar(d)}</div>`;
+}
+
+function renderHome(){
+  const key=S.gender+'-'+S.stage, c=CASE[key], cm=cycleModel(S.a), f=S.fri||friOf(S.a,S.gender);
+  const isP1=S.layers.some(l=>l.k==='P1+'), isL=S.layers.some(l=>l.k==='L');
+  const bmiHigh=S.layers.some(l=>l.k==='BMI+');
+  paint(`<div class="hometop"><div class="who">${S.gender==='F'?'여성':'남성'} · 만 ${S.a.age||32}세
+      <b>${c.name}</b></div>
+      <span class="tag">${key}</span></div>
+    <div class="pad">
+      ${heroBlock(c,cm)}
+      ${c.warn?`<div class="warn">${c.warn}</div>`:''}
+      ${c.quiet?`<div class="quiet">${c.quiet}</div>`:''}
+
+      <div class="slotlbl"><span class="eyebrow">오늘 할 일</span><hr class="rule"></div>
+      ${bmiHigh?`<button class="todo urgent" data-k="ch"><span class="chk">✓</span>
+        <span><span class="t">내몸 만들기 100일 챌린지 시작하기</span>
+        <span class="s">체중 5~7% 감량이 배란과 주기 안정에 직접 도움이 됩니다 · 탭하면 계획표로 이동</span></span></button>`:''}
+      ${c.todo.map((t,i)=>`<button class="todo ${S.done[key+i]?'done':''} ${t[2]?'urgent':''}" data-i="${i}">
+        <span class="chk">✓</span><span><span class="t">${t[0]}</span>${t[1]?`<span class="s">${t[1]}</span>`:''}</span></button>`).join('')}
+
+      <div class="slotlbl"><span class="eyebrow">내 상태</span><hr class="rule"></div>
+      <div class="card"><div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div style="font-size:12px;color:var(--ink-2)">가임 준비 지수</div>
+          <div style="font-family:var(--mono);font-size:28px;margin-top:2px">${f.total}<span style="font-size:12px;color:var(--ink-3)"> / 100</span></div></div>
+        <div style="text-align:right"><div style="font-size:11px;color:var(--ink-3)">가장 큰 기회</div>
+          <div style="font-size:14px;font-weight:600;color:var(--fertile);margin-top:2px">${f.weak.k}</div></div></div>
+        <div class="bars" style="margin-top:12px">${f.dom.slice(0,3).map(d=>`<div class="barrow">
+          <span class="lb">${d.k}</span><span class="tr"><i style="width:${d.v}%;background:${d.v<55?'var(--amber)':'var(--ink)'}"></i></span>
+          <span class="vl">${d.v}</span></div>`).join('')}</div></div>
+
+      <div class="slotlbl"><span class="eyebrow">${isL?'파트너':'같은 케이스 이야기'}</span><hr class="rule"></div>
+      ${isL?`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-size:13px;font-weight:600">${S.gender==='F'?'남편':'아내'}님</div>
+            <div style="font-size:11.5px;color:var(--ink-3);margin-top:3px">
+            ${S.gender==='F'?'정자 생성 주기 D+37 / 90 · 오늘 체크 완료':'주기 12일차 · 가임기까지 2일'}</div></div>
+          <span class="tag ok">동기화됨</span></div>
+          <div style="margin-top:12px;height:5px;border-radius:3px;background:#E9ECEA;overflow:hidden">
+            <div style="width:41%;height:100%;background:var(--sperm)"></div></div>
+          <div style="font-size:11px;color:var(--ink-3);margin-top:6px">이번 주 공동 목표 — 함께 걷기 3회 중 2회 완료</div></div>`
+        :`<div class="card"><div style="font-size:13px;font-weight:600">
+          ${isP1?'둘째 준비 그룹':'‘'+c.name+'’ 그룹'}</div>
+          <div style="font-size:11.5px;color:var(--ink-3);margin-top:4px;line-height:1.65">
+          ${isP1?'첫째 육아와 병행하는 분들이 모여 있어요 · 오늘 새 글 14개'
+                :'같은 단계 회원 2,417명 · 오늘 새 글 38개'}</div>
+          <div style="margin-top:11px;font-size:12.5px;color:var(--ink-2);line-height:1.7;border-top:1px solid var(--line);padding-top:10px">
+          “${S.stage==='S5'?'3차 실패하고 두 달 쉬었어요. 쉬는 동안 뭘 했는지 적어봅니다.'
+            :S.stage==='S2'?'검사 받으러 가기까지 반년 걸렸는데, 막상 하루면 끝나더라고요.'
+            :'주기 기록 3개월 하니까 제 패턴이 보이기 시작했어요.'}”</div></div>`}
+
+      <div class="slotlbl"><span class="eyebrow">맞춤 콘텐츠</span><hr class="rule"></div>
+      ${c.content.map(([t,k],i)=>`<div class="ctt"><div class="ic">${String(i+1).padStart(2,'0')}</div>
+        <div><div class="t">${t}</div><div class="s">${k} · 전문의 감수 2026.05</div></div></div>`).join('')}
+      ${isP1?`<div class="ctt"><div class="ic">+</div><div><div class="t">둘째 준비, 첫째 때와 무엇이 다른가</div>
+        <div class="s">속발성 · 레이어 P1+ 로 추가된 콘텐츠</div></div></div>`:''}
+    </div>`);
+  scr.querySelectorAll('.todo[data-i]').forEach(b=>b.onclick=()=>{
+    const k=key+b.dataset.i; S.done[k]=!S.done[k]; renderHome(); });
+  const chBtn=scr.querySelector('.todo[data-k="ch"]');
+  if(chBtn) chBtn.onclick=()=>{S.tab='ch';renderApp();};
+}
+
+/* ── 캘린더 ─────────────────────────────── */
+function renderCal(){
+  const cm=cycleModel(S.a), len=cm.len||30, today=14;
+  const ov=len-14, f1=Math.max(1,ov-5), f2=ov+1;
+  const cells=[];
+  for(let i=0;i<3;i++) cells.push('<div></div>');
+  for(let d=1;d<=31;d++){
+    const p=((d-1)%len)+1;
+    let cls='';
+    if(!cm.confirmMode){
+      if(p<=5)cls='m'; else if(p===ov)cls='o'; else if(p>=f1&&p<=f2)cls='f';
+      else if(p>f2)cls='l';
+    } else if(p<=5) cls='m';
+    if(d===today)cls+=' today';
+    cells.push(`<div class="d ${cls}">${d}</div>`);
+  }
+  paint(`<div class="pad" style="padding-top:14px">
+    <div class="eyebrow">CALENDAR</div>
+    <div class="qtitle" style="font-size:20px;margin:6px 0 3px">2026년 8월</div>
+    <div style="font-size:12px;color:var(--ink-3);margin-bottom:8px">
+      ${cm.confirmMode?'배란 확인 모드 — 예측 대신 기록과 확인을 우선합니다.'
+        :`평균 주기 ${len}일 · 예측 폭 ±${cm.width}일 · 신뢰도 ${cm.sd<=2?'높음':cm.sd<=5?'보통':'낮음'}`}</div>
+    <div class="cal">${['일','월','화','수','목','금','토'].map(d=>`<div class="dow">${d}</div>`).join('')}${cells.join('')}</div>
+    <div class="calleg">
+      <span><i style="background:#F6E6E9"></i>생리기</span>
+      ${cm.confirmMode?'':`<span><i style="background:#FBE3EB"></i>가임기</span>
+      <span><i style="background:#D6255E"></i>배란 예측일</span>
+      <span><i style="background:#F0EDF9"></i>황체기</span>`}
+      <span><i style="background:#fff;box-shadow:inset 0 0 0 1.5px #16204A"></i>오늘</span></div>
+
+    <div class="slotlbl"><span class="eyebrow">엔진 C · 예측 근거</span><hr class="rule"></div>
+    <div class="card" style="font-family:var(--mono);font-size:11.5px;line-height:2;color:var(--ink-2)">
+      <div>Tier 1 캘린더 &nbsp;· 배란일 = 다음 생리 − 황체기 14일</div>
+      <div>Tier 2 베이지안 · μ=${len} σ=${cm.sd??'—'} λ=0.8 (최근 6주기)</div>
+      <div>Tier 3 생리신호 &nbsp;· <span style="color:var(--ink-3)">웨어러블 미연동 — 사후 확정 불가</span></div>
+      <div style="border-top:1px solid var(--line);margin-top:7px;padding-top:7px;color:${cm.confirmMode?'var(--amber)':'var(--ok)'}">
+        MODE = ${cm.confirmMode?'CONFIRM (예측 표시 해제)':'PREDICT (신뢰구간 ±'+cm.width+'일)'}</div></div>
+    ${cm.confirmMode?`<div class="warn">불규칙 주기에서 캘린더법의 평균 오차는 약 6.6일입니다. 날짜를 단정해 보여주는 대신, LH 테스트와 체온 기록으로 배란을 확인하는 흐름으로 안내합니다.</div>`:''}
+    <div class="slotlbl"><span class="eyebrow">일정</span><hr class="rule"></div>
+    ${['iui','ivf'].includes(S.a.stage)||['S3','S4'].includes(S.stage)
+      ? `<div class="ctt"><div class="ic">15</div><div><div class="t">난자 채취</div><div class="s">08.15 (토) 09:00 · 전날 자정부터 금식</div></div></div>
+         <div class="ctt"><div class="ic">11</div><div><div class="t">초음파 진료</div><div class="s">08.11 (화) 09:30</div></div></div>
+         <div class="ctt"><div class="ic">★</div><div><div class="t">자가주사</div><div class="s">매일 20:00 · 중요 알림 채널</div></div></div>`
+      : `<div class="ctt"><div class="ic">＋</div><div><div class="t">일정 추가하기</div><div class="s">병원 예약 · 검사 · 복약</div></div></div>`}
+  </div>`);
+}
+
+/* ── 챌린지 ─────────────────────────────── */
+function renderCh(){
+  const b=bmiOf(S.a)||24, w=Number(S.a.w||70);
+  const low=b<18.5;
+  const target=low?0:Math.max(2,Math.min(w*0.10,w*0.07));
+  const goal=(w-target).toFixed(1);
+  const day=42, pct=Math.round(day/100*100);
+  const PH=[
+   ['Phase 1','D1–14 · 측정하는 습관',['먹은 것 사진 기록만 — 제한 없음','하루 5,000보 + 스트레칭 10분','매일 아침 체중·체온 기록','목표: 기록 충실도 80%']],
+   ['Phase 2','D15–45 · 대사 리셋',['섭취 1,700 → 1,500kcal 단계적 조정','6,000 → 8,000보 · 근력 주 2~3회','엽산 400㎍ 시작 · 야식 주 1회 이하','LH 테스트로 배란 1회 확인','목표: −2.0kg']],
+   ['Phase 3','D46–75 · 주기 동기화',['난포기에 고강도 배치, 황체기는 중저강도','생리기 — 걷기·요가만, 근력 휴식','배란기 전후 사우나·과격한 운동 회피','목표: −4.0kg · 주기 변동 ±4일 이내']],
+   ['Phase 4','D76–100 · 정착과 재평가',['감량 속도 완화 (주 −0.3kg)','유지 식단 연습 주 2일','D90 재측정 — 체성분·주기·지수 재산출','D100 리포트 + 다음 100일 목표 설정']]
+  ];
+  const now=day<=14?0:day<=45?1:day<=75?2:3;
+  paint(`<div class="pad" style="padding-top:14px">
+    <div class="eyebrow">100-DAY CHALLENGE</div>
+    <div class="qtitle" style="font-size:21px;margin:6px 0 4px">내몸 만들기 100일</div>
+    <div style="font-size:12.5px;color:var(--ink-2);line-height:1.75">
+      난포가 성숙하는 데 약 85~90일, 정자가 만들어지는 데 약 90일이 걸립니다.
+      100일은 난자와 정자가 한 세대 교체되는 기간입니다.</div>
+
+    ${low?`<div class="warn" style="margin-top:16px"><b>감량 목표를 설정하지 않았습니다.</b><br>
+      BMI ${b.toFixed(1)}로 저체중 구간입니다. 저체중도 배란을 방해할 수 있어, 근력·영양 트랙으로 전환했습니다.</div>`
+    :`<div class="card" style="margin-top:16px">
+      <div class="gauge"><i style="width:${pct}%"></i></div>
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--ink-3)">
+        <span>D+${day} / 100</span><span>진행률 ${pct}%</span></div>
+      <div style="display:flex;gap:18px;margin-top:15px;border-top:1px solid var(--line);padding-top:14px">
+        <div><div style="font-size:10.5px;color:var(--ink-3)">현재</div>
+          <div style="font-family:var(--mono);font-size:21px">${w}<span style="font-size:11px">kg</span></div></div>
+        <div><div style="font-size:10.5px;color:var(--ink-3)">100일 목표</div>
+          <div style="font-family:var(--mono);font-size:21px;color:var(--fertile)">${goal}<span style="font-size:11px">kg</span></div></div>
+        <div><div style="font-size:10.5px;color:var(--ink-3)">주간 목표</div>
+          <div style="font-family:var(--mono);font-size:21px">−${(target/14.3).toFixed(2)}<span style="font-size:11px">kg</span></div></div>
+      </div>
+      <div style="font-size:11px;color:var(--ink-3);line-height:1.7;margin-top:11px;border-top:1px solid var(--line);padding-top:10px">
+        목표 = 현재 체중의 7% (상한 10%) · 섭취 하한 1,400kcal 고정 ·
+        주간 감량이 3주 연속 상한을 넘으면 목표를 자동으로 낮춥니다.</div></div>`}
+
+    <div class="slotlbl"><span class="eyebrow">100일 계획표</span><hr class="rule"></div>
+    ${PH.map((p,i)=>`<div class="phase ${i===now?'now':''}">
+      <div class="ph"><b>${p[0]}</b><span>${p[1].split(' · ')[0]}</span></div>
+      <div style="font-size:11.5px;color:var(--ink-3);margin-bottom:7px">${p[1].split(' · ')[1]}</div>
+      <ul>${p[2].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}
+
+    <div class="slotlbl"><span class="eyebrow">오늘 챌린지 성공 사례</span><hr class="rule"></div>
+    <div class="card" style="font-size:12.5px;line-height:1.8;color:var(--ink-2)">
+      <div>F-S2 · 32세 · 89일차 — 오늘 8,000보 달성</div>
+      <div>F-S1 · 30세 · 21일차 — 2주 연속 기록 100%</div>
+      <div>M-S2 · 35세 · 44일차 — 금연 44일 유지</div>
+      <div style="font-size:10.5px;color:var(--ink-3);margin-top:9px;border-top:1px solid var(--line);padding-top:8px">
+        체중 절대값은 공유하지 않습니다. 행동과 변화율만 보여줍니다.</div></div>
+  </div>`);
+}
+
+/* ── 커뮤니티 · 파트너 ───────────────────── */
+function renderCo(){
+  const isP1=S.layers.some(l=>l.k==='P1+');
+  const boards=[[S.gender+'-'+S.stage+' 그룹','같은 단계 회원 2,417명'],
+    isP1?['둘째 준비방','육아 병행 · 터울 · 속발성']:['처음 준비하는 분들','시작 6개월 이내'],
+    ['후기 · 경험담','실제 겪은 일을 기록합니다'],
+    S.gender==='M'?['남성 익명방','검사·결과·마음']:['전문가 Q&A','산부인과·비뇨의학과']];
+  paint(`<div class="pad" style="padding-top:14px">
+    <div class="eyebrow">COMMUNITY</div>
+    <div class="qtitle" style="font-size:20px;margin:6px 0 14px">비슷한 시기를 지나는 사람들</div>
+    ${boards.map(([t,s],i)=>`<div class="ctt"><div class="ic">${['◉','◎','○','◍'][i]}</div>
+      <div><div class="t">${t}</div><div class="s">${s}</div></div></div>`).join('')}
+    <div class="slotlbl"><span class="eyebrow">오늘의 글</span><hr class="rule"></div>
+    ${[['검사 받으러 가기까지 반년 걸렸어요','F-S2 · 34세','댓글 27'],
+       ['2차 이식 앞두고 있습니다','F-S4 · 37세','댓글 41'],
+       ['아내 주기 알림 켜두니 대화가 늘었어요','M-S1 · 33세','댓글 12']]
+      .map(([t,w,c])=>`<div class="card" style="padding:13px 15px">
+        <div style="font-size:13px;font-weight:500;line-height:1.5">${t}</div>
+        <div style="font-size:11px;color:var(--ink-3);margin-top:5px">${w} · ${c}</div></div>`).join('')}
+    <div style="font-size:10.5px;color:var(--ink-3);line-height:1.7;margin-top:6px">
+      약물·시술 관련 조언성 게시물은 자동 검토 대상입니다. 병원 실명 비방은 노출되지 않습니다.</div>
+  </div>`);
+}
+function renderPt(){
+  const isL=S.layers.some(l=>l.k==='L');
+  paint(`<div class="pad" style="padding-top:14px">
+    <div class="eyebrow">PARTNER</div>
+    <div class="qtitle" style="font-size:20px;margin:6px 0 12px">두 개의 주기를 겹쳐 봅니다</div>
+    ${isL?`
+    <div class="card">
+      <div class="eyebrow">여성 · 28일 생리주기</div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:16px">${ringSVG({len:28},12)}
+        <div style="font-size:12.5px;line-height:1.7;color:var(--ink-2)">주기 12일차<br>
+          가임기까지 <b style="color:var(--fertile)">2일</b></div></div></div>
+    <div class="card">
+      <div class="eyebrow">남성 · 90일 정자 생성주기</div>
+      <div style="font-family:var(--mono);font-size:26px;color:var(--sperm);margin:8px 0 2px">D+37 / 90</div>
+      <div style="font-size:12px;color:var(--ink-2);line-height:1.65">지금의 관리가 반영되는 날 — 10월 24일</div>
+      ${spermBar(37)}</div>
+    <div class="card" style="border-color:var(--ink)">
+      <div class="eyebrow">겹쳐 보기</div>
+      <div style="font-size:12.5px;line-height:1.8;color:var(--ink-2);margin-top:8px">
+        오늘부터 시작한 남편의 금연은 <b>10월 24일 전후</b>의 정자에 반영됩니다.
+        그 시점은 아내의 <b>세 번째 다음 주기</b>와 만납니다.</div>
+      <div style="margin-top:14px;height:9px;border-radius:5px;background:#E9ECEA;position:relative;overflow:hidden">
+        <div style="position:absolute;left:0;width:41%;top:0;bottom:0;background:var(--sperm)"></div>
+        <div style="position:absolute;left:33%;width:5%;top:0;bottom:0;background:var(--fertile)"></div>
+        <div style="position:absolute;left:66%;width:5%;top:0;bottom:0;background:var(--fertile);opacity:.6"></div>
+        <div style="position:absolute;left:99%;width:5%;top:0;bottom:0;background:var(--fertile);opacity:.35"></div></div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:6px;display:flex;justify-content:space-between">
+        <span>오늘</span><span>1주기</span><span>2주기</span><span>3주기 · 반영</span></div></div>
+    <div class="slotlbl"><span class="eyebrow">공유 항목</span><hr class="rule"></div>
+    <div class="card" style="font-size:12.5px;line-height:2;color:var(--ink-2)">
+      <div>주기·가임기 <span class="tag ok" style="float:right">공유 중</span></div>
+      <div>체크리스트 <span class="tag ok" style="float:right">공유 중</span></div>
+      <div>진단명·유산 이력 <span class="tag" style="float:right">비공개</span></div>
+      <div style="font-size:10.5px;color:var(--ink-3);line-height:1.7;margin-top:8px;border-top:1px solid var(--line);padding-top:9px">
+        공유는 항목 단위로 켜고 끕니다. 기본값은 비공개이며, 연결을 해제하면 지난 기록도 함께 차단됩니다.</div></div>`
+    :`<div class="card" style="text-align:center;padding:32px 20px">
+      <div style="font-size:14px;font-weight:600;margin-bottom:7px">아직 연결된 파트너가 없습니다</div>
+      <div style="font-size:12.5px;color:var(--ink-2);line-height:1.75;margin-bottom:18px">
+        난임 원인의 약 40%는 남성 요인입니다.<br>파트너를 초대하면 서로의 주기가 겹쳐 보이고, 체크리스트를 함께 채웁니다.</div>
+      <button class="btn" id="inv">초대 링크 보내기</button></div>
+      <div style="font-size:11.5px;color:var(--ink-3);line-height:1.75;margin-top:10px">
+        초대해도 진단명·유산 이력은 공유되지 않습니다. 공유 항목은 나중에 직접 고를 수 있어요.</div>`}
+  </div>`);
+  const inv=document.getElementById('inv');
+  if(inv) inv.onclick=()=>{S.a.partner='now';S.layers=layersOf(S.a,S.gender);renderApp();};
+}
+
+/* ── 인스펙터 ───────────────────────────── */
+function updateInsp(){
+  const box=document.getElementById('inspA');
+  if(!S.stage){
+    const list=S.gender?q():[];
+    box.innerHTML=`<div class="kv"><b>단계</b><span>${S.view==='intro'?'온보딩':S.view==='gender'?'성별 선택':'설문 진행'}</span></div>
+      ${S.gender?`<div class="kv"><b>트랙</b><span>${S.gender==='F'?'여성 28일':'남성 90일'}</span></div>
+      <div class="kv"><b>문항</b><span>${Math.min(S.qi+1,list.length)} / ${list.length}</span></div>`:''}`;
+    return;
+  }
+  const f=S.fri, cm=cycleModel(S.a), fl=redFlags(S.a);
+  box.innerHTML=`
+    <div class="kv"><b>엔진 A · 분류</b><span>${S.rule} → ${S.gender}-${S.stage}</span></div>
+    <div class="kv"><b>위험신호</b><span>${fl.length?fl.length+'개':'없음'}</span></div>
+    <div class="kv"><b>엔진 B · 지수</b><span>${f.total} / 100</span></div>
+    <div class="kv"><b>최약 도메인</b><span>${f.weak.k} ${f.weak.v}</span></div>
+    <div class="kv"><b>BMI</b><span>${f.bmi?f.bmi.toFixed(1):'—'}</span></div>
+    <div class="kv"><b>엔진 C · 모드</b><span>${cm.confirmMode?'CONFIRM':'PREDICT ±'+cm.width+'d'}</span></div>
+    <div class="kv"><b>레이어</b><span>${S.layers.length?S.layers.map(l=>l.k).join(' '):'—'}</span></div>
+    ${fl.length?`<div style="font-size:10.5px;color:var(--amber);line-height:1.6;margin-top:8px">${fl.join(' · ')}</div>`:''}`;
+}
+
+/* ── 케이스 스위처 ──────────────────────── */
+const ALL=[['F','S1'],['F','S2'],['F','S3'],['F','S4'],['F','S5'],['M','S1'],['M','S2'],['M','S3'],['M','S4'],['M','S5']];
+const RATIO={'F-S1':'24.2%','F-S2':'22.6%','F-S3':'7.0%','F-S4':'17.9%','F-S5':'6.3%',
+             'M-S1':'4.8%','M-S2':'5.7%','M-S3':'2.2%','M-S4':'6.6%','M-S5':'2.6%'};
+function buildSwitcher(){
+  const sw=document.getElementById('switcher');
+  sw.innerHTML=ALL.map(([g,s])=>{
+    const k=g+'-'+s;
+    return `<button data-c="${k}" class="${S.gender+'-'+S.stage===k?'on':''}">${k}
+      <em>${CASE[k].name.replace(' (남성)','')} · ${RATIO[k]}</em></button>`;
+  }).join('');
+  sw.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{
+    const [g,s]=b.dataset.c.split('-');
+    S.gender=g; S.stage=s; S.demo=true;
+    if(!S.a.age) S.a={age:g==='F'?32:34,h:g==='F'?163:175,w:g==='F'?72:78,cycle:s==='S1'?'reg':'long',parity:'0',
+                      diet:'late',ex:'1',sleep:'6',dx:[],sa:s==='S2'?'never':'normal',habit:[],ttp:'6'};
+    if(g==='M'&&s==='S2') S.a.sa='never';
+    S.fri=friOf(S.a,g); S.layers=layersOf(S.a,g); S.why='케이스 스위처로 직접 선택한 화면입니다.';
+    S.rule={'S1':'R7','S2':'R5','S3':'R2','S4':'R1','S5':'R3'}[s];
+    S.view='home'; S.tab='home'; renderApp(); buildSwitcher();
+  });
+}
+document.getElementById('resetBtn').onclick=()=>{
+  Object.assign(S,{gender:null,a:{},qi:0,stage:null,rule:null,why:'',fri:null,layers:[],tab:'home',intro:0,view:'intro',done:{},demo:false});
+  tabsEl.style.display='none'; document.getElementById('sbRight').textContent='freyaX';
+  renderIntro(); buildSwitcher(); updateInsp();
+};
+
+/* ── 시작 ───────────────────────────────── */
+renderIntro(); buildSwitcher(); updateInsp();
+</script>
+</body>
+</html>
