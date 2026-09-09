@@ -135,7 +135,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .nextrow .t{font-size:12.5px;font-weight:500;line-height:1.45}
 .nextrow .s{font-size:11px;color:var(--ink-3);margin-top:2px;line-height:1.5}
 
-/* 이메일 가입 · 계정 통합 */
+/* 이메일 가입 · 기존 계정 안내 */
 .divider{display:flex;align-items:center;gap:10px;margin:16px 0 12px}
 .divider hr{flex:1;height:1px;background:var(--line);border:none}
 .divider span{font-size:11px;color:var(--ink-3)}
@@ -730,8 +730,8 @@ input[type=range]{width:100%;accent-color:var(--ink);margin-top:14px}
 .shcat button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .shitem{display:flex;gap:12px;align-items:flex-start;padding:13px;background:#fff;border:1px solid var(--line);
   border-radius:13px;margin-bottom:8px;width:100%;text-align:left}
-.shitem .thumb{width:52px;height:52px;border-radius:11px;background:#EEF1F8;flex:0 0 auto;
-  display:flex;align-items:center;justify-content:center;font-size:19px}
+.shitem .thumb{width:52px;height:52px;border-radius:13px;background:#EEF1F8;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;color:var(--ink-2)}
 .shitem .t{font-size:13px;font-weight:600;line-height:1.4}
 .shitem .d2{font-size:11px;color:var(--ink-3);margin-top:4px;line-height:1.5}
 .shitem .pp{font-family:var(--mono);font-size:13.5px;font-weight:600;margin-top:6px}
@@ -812,6 +812,161 @@ input[type=range]{width:100%;accent-color:var(--ink);margin-top:14px}
 .syncline>span{display:inline}
 .syncline i{width:5px;height:5px;border-radius:50%;background:var(--ok);display:inline-block;margin-right:5px;vertical-align:1px}
 
+/* 계정 · 보안 */
+.devrow{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+.devrow:last-child{border:none}
+.devrow .di{width:30px;height:30px;border-radius:9px;background:#EEF1F8;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ink-2)}
+.devrow.cur2 .di{background:var(--ink);color:#fff}
+.devrow .t{font-size:12.5px;font-weight:600;line-height:1.4}
+.devrow .s{font-size:10.5px;color:var(--ink-3);margin-top:3px;line-height:1.55}
+.loglist{font-family:var(--mono);font-size:10.5px;line-height:2.1;color:var(--ink-2)}
+.loglist .bad{color:var(--fertile)}
+.stepline{display:flex;align-items:flex-start;gap:10px;padding:11px 0}
+.stepline .num2{width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;
+  flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:10px;
+  font-family:var(--mono);font-weight:600}
+.stepline .num2.warn2{background:var(--amber)}
+.stepline .num2.dan{background:var(--fertile)}
+.stepline .t{font-size:12.5px;font-weight:600;line-height:1.45}
+.stepline .s{font-size:11px;color:var(--ink-3);margin-top:3px;line-height:1.6}
+.cmptbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.cmptbl th{padding:9px 6px;font-size:10px;font-weight:600;color:var(--ink-3);
+  border-bottom:1.5px solid var(--line);text-align:center}
+.cmptbl th:first-child{text-align:left;width:40%}
+.cmptbl td{padding:9px 6px;border-bottom:1px solid #EDF0EE;text-align:center;color:var(--ink-2)}
+.cmptbl td:first-child{text-align:left;color:var(--ink);font-weight:500}
+.cmptbl .yes{color:var(--ok);font-weight:600}
+.cmptbl .no{color:var(--ink-3)}
+.cmptbl tr:last-child td{border-bottom:none}
+.iapbox{border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:8px;background:#fff}
+.iapbox .ih{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.iapbox .ih b{font-size:13px}
+.iapbox .ih .badge2{font-family:var(--mono);font-size:8.5px;padding:2px 6px;border-radius:4px;
+  background:#EEF1F8;color:var(--ink-2)}
+.iapbox .ih .badge2.pg{background:#E4F2F0;color:var(--ok)}
+.iapbox p{font-size:11.5px;color:var(--ink-2);line-height:1.75}
+
+/* 디자인 · 시각 보정 */
+.phone{box-shadow:0 24px 60px -18px rgba(22,32,74,.28), 0 2px 8px rgba(22,32,74,.06)}
+#screen{background:
+  radial-gradient(1200px 380px at 50% -180px, #FBEFF3 0%, rgba(251,239,243,0) 62%),
+  var(--paper)}
+.qhead{position:relative}
+.qhead:after{content:'';position:absolute;left:22px;right:22px;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--line),rgba(216,222,220,0))}
+.hometop{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0));
+  backdrop-filter:blur(6px)}
+.card{box-shadow:0 1px 2px rgba(22,32,74,.03)}
+.btn{transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease}
+.btn:active{transform:translateY(1px)}
+.btn:not(.ghost):not(:disabled){
+  background:linear-gradient(180deg,#1E2A55,var(--ink));
+  box-shadow:0 2px 8px -2px rgba(22,32,74,.35)}
+.btn.ghost:active{background:#F3F5FB}
+.ctt{transition:border-color .15s ease, background .15s ease}
+.ctt:active{background:#F7F9FB}
+.opt{transition:border-color .12s ease, background .12s ease}
+.opt:active{background:#F3F5FB}
+#tabs{background:rgba(251,252,250,.94);backdrop-filter:blur(12px);
+  box-shadow:0 -1px 0 var(--line), 0 -6px 18px -12px rgba(22,32,74,.18)}
+#tabs button{position:relative;transition:color .15s ease}
+#tabs button.on:before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:22px;height:2.5px;border-radius:0 0 3px 3px;background:var(--fertile)}
+.tag{transition:background .15s ease}
+.eyebrow{font-feature-settings:'tnum'}
+.donemark{box-shadow:0 6px 18px -6px rgba(31,140,128,.5)}
+.pbal{background:linear-gradient(140deg,#1E2A55 0%,var(--ink) 55%,#2A2246 100%);
+  box-shadow:0 6px 20px -8px rgba(22,32,74,.45)}
+.friring{filter:drop-shadow(0 3px 10px rgba(214,37,94,.14))}
+.stepcard{box-shadow:0 1px 2px rgba(22,32,74,.03)}
+.mcard{box-shadow:0 1px 2px rgba(22,32,74,.03);transition:transform .12s ease}
+.mcard:active{transform:scale(.985)}
+.myrow{transition:background .12s ease}
+.myrow:active{background:#F7F9FB}
+.plancard{transition:border-color .15s ease, box-shadow .15s ease}
+.plancard.on3{box-shadow:0 4px 16px -6px rgba(22,32,74,.22)}
+.shitem{transition:transform .12s ease}
+.shitem:active{transform:scale(.99)}
+.splash{background:
+  radial-gradient(760px 420px at 22% 8%, #2A2246 0%, rgba(42,34,70,0) 58%),
+  radial-gradient(620px 380px at 88% 96%, #24325F 0%, rgba(36,50,95,0) 60%),
+  var(--ink)}
+.tagline{text-shadow:0 2px 14px rgba(0,0,0,.18)}
+.brandmark{letter-spacing:.38em}
+.intro .plot{filter:drop-shadow(0 4px 12px rgba(22,32,74,.07))}
+.dots i{transition:background .25s ease, width .25s ease}
+.dots i.on{width:26px}
+
+/* 아이콘 */
+.ico{display:block;flex:0 0 auto}
+.iconbox{display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  border-radius:10px;background:#EEF1F8;color:var(--ink-2)}
+.iconbox.sm2{width:28px;height:28px}
+.iconbox.md{width:34px;height:34px;border-radius:11px}
+.iconbox.lg{width:44px;height:44px;border-radius:14px}
+.iconbox.rose{background:#FBE9EF;color:var(--fertile)}
+.iconbox.teal{background:#E4F2F0;color:var(--ok)}
+.iconbox.blue{background:#E3E9F5;color:var(--sperm)}
+.iconbox.amber{background:#FBF0E0;color:var(--amber)}
+.iconbox.ink{background:var(--ink);color:#fff}
+.iconbox.dim{background:#EDF0EE;color:var(--ink-3)}
+
+/* 뱃지 — 통일 규격 */
+.bdg{display:inline-flex;align-items:center;gap:3px;font-family:var(--mono);font-size:8.5px;
+  letter-spacing:.05em;padding:3px 7px;border-radius:5px;line-height:1.4;white-space:nowrap;
+  vertical-align:1px}
+.bdg.neutral{background:#EDF0EE;color:var(--ink-2)}
+.bdg.rose{background:#FBE9EF;color:var(--fertile)}
+.bdg.teal{background:#E4F2F0;color:var(--ok)}
+.bdg.blue{background:#E3E9F5;color:var(--sperm)}
+.bdg.amber{background:#FBF0E0;color:var(--amber)}
+.bdg.ink{background:var(--ink);color:#fff}
+.bdg.out{background:transparent;border:1px solid var(--line);color:var(--ink-3)}
+.bdg.lg2{font-size:10px;padding:4px 9px;border-radius:6px}
+.bdg .ico{width:9px;height:9px;stroke-width:2.2}
+.bdg.dot4:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;
+  display:inline-block;opacity:.75}
+
+/* 배너 — 통일 규격 */
+.bnr{display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;
+  padding:13px 14px;border-radius:13px;margin-bottom:11px;position:relative;overflow:hidden}
+.bnr .bic{width:30px;height:30px;border-radius:9px;flex:0 0 auto;display:flex;
+  align-items:center;justify-content:center}
+.bnr .bbd{flex:1;min-width:0}
+.bnr .bt{font-size:13px;font-weight:600;line-height:1.45}
+.bnr .bs{font-size:11px;margin-top:4px;line-height:1.6;opacity:.8}
+.bnr .bgo{align-self:center;flex:0 0 auto;opacity:.45}
+.bnr.dark{background:var(--ink);color:#fff}
+.bnr.dark .bic{background:rgba(255,255,255,.14);color:#fff}
+.bnr.dark .bs{color:#B9C2DC;opacity:1}
+.bnr.rose2{background:#FBEEF2;border:1px solid #F0D4DC;color:var(--fertile)}
+.bnr.rose2 .bic{background:#fff;color:var(--fertile)}
+.bnr.rose2 .bs{color:var(--ink-2);opacity:1}
+.bnr.blue2{background:#F3F5FB;border:1px solid #E1E6F2;color:var(--ink)}
+.bnr.blue2 .bic{background:var(--sperm);color:#fff}
+.bnr.blue2 .bs{color:var(--ink-3);opacity:1}
+.bnr.teal2{background:#EEF3F1;border:1px solid #DCE7E3;color:var(--ink)}
+.bnr.teal2 .bic{background:var(--ok);color:#fff}
+.bnr.teal2 .bs{color:var(--ink-2);opacity:1}
+.bnr.quiet3{background:#F4F2FA;border:1px solid #E2DCF2;color:#463374}
+.bnr.quiet3 .bic{background:var(--luteal);color:#fff}
+.bnr.quiet3 .bs{color:#6E5FA0;opacity:1}
+.bnr.amber2{background:#FDF8F0;border:1px solid #F0E0C4;color:#7A5514}
+.bnr.amber2 .bic{background:var(--amber);color:#fff}
+.bnr.amber2 .bs{color:#7A5514;opacity:.85}
+.bnr:after{content:'';position:absolute;right:-30px;top:-30px;width:90px;height:90px;
+  border-radius:50%;background:currentColor;opacity:.045;pointer-events:none}
+
+/* 탭바 아이콘 */
+#tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:9px}
+#tabs button .ico{width:21px;height:21px;stroke-width:1.5}
+#tabs button.on .ico{stroke-width:1.9}
+#tabs button span{font-size:9.5px;letter-spacing:0}
+
+/* 마이페이지 행 아이콘 */
+.myrow .iconbox{margin-right:2px}
+
 /* 인스펙터 */
 .insp{width:272px;font-size:11.5px;padding-top:14px}
 .insp h4{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--ink-3);text-transform:uppercase;margin-bottom:10px}
@@ -837,7 +992,7 @@ input[type=range]{width:100%;accent-color:var(--ink);margin-top:14px}
 <body>
 
 <aside class="brief">
-  <div class="mark">freyaX · prototype v4.0.2</div>
+  <div class="mark">freyaX · prototype v4.2</div>
   <h1>몰라서 불안한<br>시간을 줄입니다</h1>
   <p style="font-size:11.5px;color:var(--ink-3);margin-bottom:10px">
     단계별 맞춤 임신 준비 및 건강관리 서비스<br>여성 28일 · 남성 90일 · 5단계 10케이스</p>
@@ -845,7 +1000,7 @@ input[type=range]{width:100%;accent-color:var(--ink);margin-top:14px}
     오른쪽 패널의 바로가기로 각 화면을 즉시 확인할 수 있습니다.</p>
   <div class="legend">
     <b>NEW IN V2</b>
-    <div class="swatch"><span class="newbadge">01</span>SNS 3종 + 이메일 가입 · 계정 통합</div>
+    <div class="swatch"><span class="newbadge">01</span>SNS 3종 + 이메일 가입 · 기존 계정 안내</div>
     <div class="swatch"><span class="newbadge">02</span>건강 대시보드 (체온·수면·걸음)</div>
     <div class="swatch"><span class="newbadge">03</span>자동 / 수기 To-do 분리</div>
     <div class="swatch"><span class="newbadge">04</span>마이페이지 5개 영역</div>
@@ -864,6 +1019,10 @@ input[type=range]{width:100%;accent-color:var(--ink);margin-top:14px}
     <div class="swatch"><span class="newbadge">17</span>포인트 정책 · 상점 · 배송지</div>
     <div class="swatch"><span class="newbadge">18</span>요금제 3종 · 카드 · 복합 결제</div>
     <div class="swatch"><span class="newbadge">19</span>약관 4종 · 무료/유료 콘텐츠</div>
+    <div class="swatch"><span class="newbadge">20</span>계정·보안 · 로그인 기기 · 휴면</div>
+    <div class="swatch"><span class="newbadge">21</span>탈퇴 3단계 · 7일 복구 유예</div>
+    <div class="swatch"><span class="newbadge">22</span>전 기능 무료 · 매출 구조 안내</div>
+    <div class="swatch"><span class="newbadge">23</span>아이콘·뱃지·배너 디자인 시스템</div>
   </div>
   <div class="legend">
     <b>METRIC COLOR</b>
@@ -889,7 +1048,7 @@ input[type=range]{width:100%;accent-color:var(--ink);margin-top:14px}
       <button data-j="pre">간이 진단</button>
       <button data-j="auth">로그인 화면</button>
       <button data-j="email">이메일 가입</button>
-      <button data-j="merge">계정 통합</button>
+      <button data-j="merge">기존 계정 안내</button>
       <button data-j="home">홈 · 대시보드</button>
       <button data-j="my">마이페이지</button>
       <button data-j="pair">웨어러블 연동</button>
@@ -909,6 +1068,8 @@ input[type=range]{width:100%;accent-color:var(--ink);margin-top:14px}
       <button data-j="shop">포인트 상점</button>
       <button data-j="pay">결제·요금제</button>
       <button data-j="terms">약관</button>
+      <button data-j="sec">계정·보안</button>
+      <button data-j="plans">요금제 비교</button>
       <button data-j="simchg">파트너 변경</button>
     </div>
   </div>
@@ -932,19 +1093,21 @@ function today0(){const t=new Date();t.setHours(0,0,0,0);return t;}
 
 const S = {
   view:'splash', intro:0, preQi:0, preDone:false,
-  auth:{provider:null, nickname:'', email:'', agree:{}, methods:[], restored:false},
+  auth:{provider:null, nickname:'', email:'', agree:{}, restored:false,
+    autoLogin:true, lastLogin:'2026.09.08 09:12', joinedAt:'2026.03.11',
+    sessions:[], loginLog:[]},
   gender:null, a:{}, qi:0,
   stage:null, rule:null, why:'', fri:null, layers:[],
   tab:'home', myView:null, done:{}, demo:false,
   device:{connected:false, model:null, nights:0, sync:'—'},   // = 연동된 웨어러블
   link:{platform:null, phone:true, health:false, watch:false, writeback:false,
         types:{steps:true, sleep:true, hr:true, temp:false, weight:true}},
-  sub:{plan:'free', next:'—', method:null, card:null, cycle:'month', pending:null},
+  sub:{plan:'free', card:null, method:null},
   point:{balance:2400, log:[], today:0, earned:{}},
   notice:{read:[], open:null},
   shop:{cat:'all', item:null, qty:1, useP:0},
   addr:{name:'', phone:'', zip:'', addr1:'', addr2:'', memo:'', agreed:false, saved:false},
-  orders:[], termsView:null, unlocked:{},
+  orders:[], termsView:null, unlocked:{}, wdStep:0, wdReason:[], wdNote:'', wdConfirm:false,
   noti:{cycle:true, treat:true, coach:true, quiet:false},
   pair:{step:0, hasWear:null, platform:null, types:null, dev:null, searching:false, found:false},
   art:null, saved:[], seenContent:{},
@@ -969,7 +1132,7 @@ const SNSNAME = {kakao:'카카오', google:'Google', apple:'Apple', email:'이�
 const SNSMARK = {kakao:['K','#FEE500','#191600'], google:['G','#4285F4','#fff'],
                  apple:['\uf8ff','#000000','#ffffff'], email:['@','#EEF1F8','#4E5B7E']};
 
-/* 기존 가입 계정 시뮬레이션 — 계정 통합 데모용 */
+/* 기존 가입 계정 시뮬레이션 — 기존 계정 안내 데모용 */
 const ACCOUNTS = [
   {email:'jiwon@gmail.com', provider:'kakao', nick:'조용한여정4821', joined:'2026.03.11',
    cycles:5, days:161, lastAt:'2026.08.11', partner:true, sub:'Care'}
@@ -1978,21 +2141,18 @@ function renderArt(){
   const isFree=!!(libItem&&libItem.free);
   const a=getArt(title,cat);
   const saved=S.saved.includes(title);
-  const premium = S.sub.plan==='free' && !isFree && !((S.unlocked||{})[title]);
+  const premium = false;   // 구독 모델 없음 — 전 콘텐츠 무료
   paint(`<div class="artcover">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <button class="eyebrow" id="ab" style="color:rgba(255,255,255,.6);letter-spacing:.14em">← 뒤로</button>
         <span class="eyebrow" style="color:rgba(255,255,255,.4)">${a.min}분 분량</span></div>
       <div class="cat" style="margin-top:16px">
-        <span class="${isFree?'freebadge':'paidbadge'}">${isFree?'무료':'유료'}</span>${cat}</div>
+        <span class="bdg teal">무료</span>${cat}</div>
       <h2>${title}</h2>
       <div class="meta">전문의 감수 2026.05.12 · 산부인과 전문의 감수<br>
         ${CASE[S.gender+'-'+S.stage].name} 단계 맞춤 추천</div>
     </div>
-    ${isFree?`<div style="padding:14px 22px 0">
-      <div class="card" style="background:#EEF3F1;border-color:#DCE7E3;padding:11px 13px;margin:0">
-        <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7">
-          <b style="color:var(--ok)">무료 콘텐츠</b> — 전문을 끝까지 읽으실 수 있습니다.</div></div></div>`:''}
+
     <div class="artlead">${a.lead}</div>
     <div class="artbody">
       ${a.free.map(([h,p])=>`<h4>${h}</h4><p>${p}</p>`).join('')}
@@ -2006,10 +2166,8 @@ function renderArt(){
       <div class="lk">🔒</div>
       <div class="t">이어지는 ${a.lock.length}개 섹션은 유료 콘텐츠입니다</div>
       <div class="s">${a.lock.join(' · ')}</div>
-      <button class="btn sm" id="sub">Self Care 구독하고 계속 읽기 · 월 9,900원</button>
-      <button class="btn ghost sm" id="one" style="margin-top:7px">포인트로 열람 · 800P</button>
-      <div style="font-size:10.5px;color:var(--ink-3);line-height:1.7;margin-top:10px">
-        무료 표시된 글은 구독 없이 전문을 읽으실 수 있습니다. 현재 보유 ${(S.point.balance||0).toLocaleString()}P</div>
+      <button class="btn sm" id="sub">전문 보기</button>
+    </div>
     </div>`:''}
     <div class="artfoot">
       <div class="artacts">
@@ -2253,11 +2411,11 @@ function renderPreResult(){
   const r=classifyPre(S.a), key=S.gender+'-'+r.stage, c=CASE[key];
   const f=friPre(S.a,S.gender);
   const locked=[
-    ['◔','가임 준비 지수 정밀 산출','주기 안정성·생활습관·위험요인까지 반영한 확정 점수'],
-    ['◑',S.gender==='F'?'가임기·배란 예측':'90일 사이클 · 재검사 권장일',
+    ['chart','가임 준비 지수 정밀 산출','주기 안정성·생활습관·위험요인까지 반영한 확정 점수'],
+    ['target',S.gender==='F'?'가임기·배란 예측':'90일 사이클 · 재검사 권장일',
       S.gender==='F'?'생리 시작일을 입력하면 예측 폭이 계산됩니다':'생활습관 기록이 검사 시점에 반영됩니다'],
-    ['◕','단계 맞춤 콘텐츠와 챌린지','지금 단계에 맞는 것만 골라서 보여드립니다'],
-    ['◒','기록 저장과 파트너 연결','기록이 쌓일수록 예측이 정확해집니다'],
+    ['flag','단계 맞춤 콘텐츠와 챌린지','지금 단계에 맞는 것만 골라서 보여드립니다'],
+    ['link','기록 저장과 파트너 연결','기록이 쌓일수록 예측이 정확해집니다'],
   ];
   paint(`${preBar()}<div class="preres">
     <div class="eyebrow">간이 진단 결과</div>
@@ -2292,11 +2450,12 @@ function renderPreResult(){
           ${c.todo.slice(0,2).map(t=>'· '+t[0]).join('<br>')}</div>
         <div style="height:34px;border-radius:8px;background:#EEF1F8;margin-top:10px"></div>
       </div>
-      <div class="lockover"><span class="lk3">🔒</span><span>가입 후 확인할 수 있습니다</span></div>
+      <div class="lockover"><span class="iconbox md dim">${ic('lock',17)}</span>
+        <span>가입 후 확인할 수 있습니다</span></div>
     </div>
     <div class="card">
       <div class="nextlist">
-        ${locked.map(([i,t,d])=>`<div class="nextrow"><span class="ic3">${i}</span>
+        ${locked.map(([i,t,d])=>`<div class="nextrow"><span class="iconbox sm2 dim">${ic(i,15)}</span>
           <span><span class="t">${t}</span><span class="s">${d}</span></span></div>`).join('')}
       </div>
     </div>
@@ -2351,8 +2510,7 @@ function renderAuth(){
     const acc=findAccount(p.email);
     if(acc && acc.provider!==p.k){ S.auth.pending={provider:p.k, email:p.email};
       S.view='merge'; return renderMerge(acc); }
-    S.auth.provider=p.k; S.auth.email=p.email; S.auth.methods=[p.k];
-    S.auth.nickname='조용한여정'+(1000+Math.floor(Math.random()*8999));
+    S.auth.provider=p.k; S.auth.email=p.email; S.auth.nickname='조용한여정'+(1000+Math.floor(Math.random()*8999));
     S.view='consent'; renderConsent();
   });
   document.getElementById('mail').onclick=()=>{S.view='email';S.em={step:0,mode:'signup',email:'',pw:''};renderEmail();};
@@ -2384,8 +2542,8 @@ function renderEmail(){
           :'체험용 — 이미 가입된 이메일: jiwon@gmail.com'}</div>
       ${dup?`<div class="mergebox" style="margin-top:4px">
         <div style="font-size:12.5px;line-height:1.75;color:var(--ink-2)">
-          <b style="color:var(--ink)">새 계정을 만드시겠어요?</b><br>
-          기존 계정에 연결하면 지금까지의 주기 기록과 파트너 연결이 그대로 유지됩니다.</div>
+          <b style="color:var(--ink)">${SNSNAME[dup.provider]}로 로그인해 주세요.</b><br>
+          새 계정을 만드시면 지금까지의 주기 기록과 파트너 연결을 이어받을 수 없습니다.</div>
         <button class="btn sm" id="toMerge" style="margin-top:12px">기존 계정 확인하기</button></div>`:''}
       <button class="btn" id="nx" ${ok&&!dup?'':'disabled'}>다음</button>
       ${login?'<button class="tinylink" id="reset">비밀번호를 잊으셨나요?</button>':''}
@@ -2441,8 +2599,7 @@ function renderEmail(){
   pw.oninput=()=>{E.pw=pw.value;renderEmailSoftPw();};
   document.getElementById('bk').onclick=()=>{E.step=0;renderEmail();};
   document.getElementById('nx').onclick=()=>{
-    S.auth.provider='email'; S.auth.email=E.email; S.auth.methods=['email'];
-    if(login){
+    S.auth.provider='email'; S.auth.email=E.email; if(login){
       const acc=findAccount(E.email);
       S.auth.nickname=acc?acc.nick:'조용한여정'+(1000+Math.floor(Math.random()*8999));
       AGREE.forEach(a=>S.auth.agree[a.k]=true);
@@ -2490,9 +2647,9 @@ function renderEmailSoftPw(){
 }
 
 /* ── 기존 계정 안내 ───────────────────────
-   계정 통합(카카오에 구글 연결)은 제공하지 않음.
-   새 계정으로는 기존 기록·파트너 연결을 이관할 수 없으므로,
-   "기존 계정으로 로그인"을 안내하는 편이 단순하고 정확함.
+   계정 통합 기능은 제공하지 않음 (2026-09 결정).
+   여러 로그인 수단을 한 계정에 연결하지 않고,
+   가입에 사용한 수단으로만 로그인하도록 안내함.
 ──────────────────────────────────────── */
 function renderMerge(acc){
   const inc=S.auth.pending;
@@ -2542,18 +2699,18 @@ function renderMerge(acc){
     <div style="font-size:10.5px;color:var(--ink-3);line-height:1.75;margin-top:12px">
       ${SNSNAME[acc.provider]} 계정에 접근할 수 없다면 고객센터로 문의해 주세요.
       본인 확인 후 로그인 수단을 변경해 드립니다.
+      다른 수단을 이 계정에 추가로 연결해 드리는 기능은 제공하지 않습니다.
     </div>
   </div>`);
   document.getElementById('bk').onclick=()=>{S.auth.pending=null;S.view='auth';renderAuth();};
   document.getElementById('loginExist').onclick=()=>{
     S.auth.provider=acc.provider; S.auth.email=acc.email; S.auth.nickname=acc.nick;
-    S.auth.methods=[acc.provider]; S.auth.restored=true;
+    S.auth.restored=true;
     AGREE.forEach(a=>S.auth.agree[a.k]=true);
     restoreAccount();
   };
   document.getElementById('newacc').onclick=()=>{
-    S.auth.provider=inc.provider; S.auth.email=inc.email; S.auth.methods=[inc.provider];
-    S.auth.nickname='조용한여정'+(1000+Math.floor(Math.random()*8999));
+    S.auth.provider=inc.provider; S.auth.email=inc.email; S.auth.nickname='조용한여정'+(1000+Math.floor(Math.random()*8999));
     S.auth.pending=null; S.view='consent'; renderConsent();
   };
   updateInsp();
@@ -3106,8 +3263,9 @@ function renderApp(){
   if(S.view==='pcycle') return renderPCycle();
   S.view='app';
   tabsEl.style.display='flex';
-  const T=[['home','홈'],['cal','캘린더'],['ch','챌린지'],['co','커뮤니티'],['my','마이']];
-  tabsEl.innerHTML=T.map(([k,l])=>`<button data-t="${k}" class="${S.tab===k?'on':''}"><span class="g"></span>${l}</button>`).join('');
+  const T=[['home','홈','home'],['cal','캘린더','calendar'],['ch','챌린지','flag'],
+           ['co','커뮤니티','people'],['my','마이','user']];
+  tabsEl.innerHTML=T.map(([k,l,i])=>`<button data-t="${k}" class="${S.tab===k?'on':''}">${ic(i,21)}<span>${l}</span></button>`).join('');
   tabsEl.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;S.myView=null;S.art=null;renderApp();});
   document.getElementById('sbRight').textContent=S.gender?S.gender+'-'+S.stage:'freyaX';
   if(S.art) return renderArt();
@@ -3229,7 +3387,7 @@ function dashboard(){
       </div></div>
 
     ${phoneOnly?`<div class="lockcard">
-      <span class="lk2">🌡</span>
+      <span class="iconbox md dim">${ic('temp',17)}</span>
       <span style="flex:1"><span class="t">남성은 매일 체온을 잴 필요가 없습니다</span>
         <span class="s">정소 온도는 심부 체온보다 2~4℃ 낮게 유지됩니다. 손목 체온은 의미가 없고,
           <b>발열과 열 노출 사건</b>만 기록하면 됩니다.</span></span>
@@ -3264,7 +3422,7 @@ function dashboard(){
   </div>
 
   ${sensorOnly?`<div class="lockcard">
-    <span class="lk2">☾</span>
+    <span class="iconbox md dim">${ic('moon',17)}</span>
     <span style="flex:1"><span class="t">휴대폰 센서로는 수면을 잴 수 없습니다</span>
       <span class="s">모션 센서는 걸음만 집계합니다. <b>Apple 건강 / Health Connect</b>를 연결하면
         워치·수면앱이 기록한 수면을 받아올 수 있습니다.</span></span>
@@ -3272,7 +3430,7 @@ function dashboard(){
       연동</button>
   </div>`:''}
   ${phoneOnly?(S.gender==='F'?`<div class="lockcard">
-    <span class="lk2">🌡</span>
+    <span class="iconbox md dim">${ic('temp',17)}</span>
     <span style="flex:1"><span class="t">체온은 휴대폰으로 잴 수 없습니다</span>
       <span class="s">${bbtLogs>0
         ? `기초체온을 직접 ${bbtLogs}일 기록하셨습니다. 6일 이상 쌓이면 배란 확정에 반영됩니다.`
@@ -3280,7 +3438,7 @@ function dashboard(){
     <button class="btn ghost sm" id="dashLog" style="width:auto;padding:8px 12px;font-size:11.5px;flex:0 0 auto">
       ${bbtLogs>0?'기록':'직접 기록'}</button>
   </div>`:`<div class="lockcard">
-    <span class="lk2">🌡</span>
+    <span class="iconbox md dim">${ic('temp',17)}</span>
     <span style="flex:1"><span class="t">남성은 매일 체온을 잴 필요가 없습니다</span>
       <span class="s">정소 온도는 심부 체온보다 2~4℃ 낮게 유지됩니다. 손목 체온은 의미가 없고,
         <b>발열과 열 노출 사건</b>만 기록하면 됩니다.</span></span>
@@ -3333,17 +3491,17 @@ function renderHome(){
       <span class="tag">${key}</span></div>
     <div class="pad">
       ${(S.stageChange&&!S.stageChange.dismissed&&TRANSITION.policy(S.stageChange.type).banner)?`
-        <button class="stagebar ${S.stageChange.type==='rest'?'quiet2':''}" id="stagebar">
-          <span class="bd"></span>
-          <span style="flex:1"><span class="t">${S.stageChange.type==='rest'
+        <button class="bnr ${S.stageChange.type==='rest'?'quiet3':'dark'}" id="stagebar">
+          <span class="bic">${ic(S.stageChange.type==='rest'?'moon':'sparkle',16)}</span>
+          <span class="bbd"><span class="bt">${S.stageChange.type==='rest'
             ? '시술이 끝난 뒤 2주가 지났습니다'
             : STAGE_NAME[S.stageChange.to]+' 단계로 바뀐 것 같아요'}</span>
-            <span class="s">${S.stageChange.reason}<br>눌러서 확인 · ✕로 닫기</span></span>
-          <span class="go" id="stagebarX">✕</span></button>`:''}
+            <span class="bs">${S.stageChange.reason}<br>눌러서 확인 · ✕로 닫기</span></span>
+          <span class="bgo" id="stagebarX">✕</span></button>`:''}
       ${heroBlock(c,cm)}
       ${(S.gender==='F'&&(S.a.goal||[]).includes('fw'))?(()=>{const f=fwModel(),lp=lhPlan();
         return `<button class="ctt" id="fwGo" style="margin-bottom:12px;border-color:var(--fertile)">
-        <span class="ic" style="background:#FBE9EF;color:var(--fertile)">◑</span>
+        <span class="iconbox md rose">${ic('target',17)}</span>
         <span><span class="t">가임기 정확도 ${f.ok?`± ${f.w}일`:'확인 모드'}</span>
           <span class="s">${f.ok
             ? (lp.ok&&lp.state==='now' ? 'LH 테스트 기간입니다 · 지금 확인하면 ±1일까지 좁아집니다'
@@ -3352,7 +3510,7 @@ function renderHome(){
             : '주기 변동이 커서 예측 대신 확인을 먼저 도와드립니다'}</span></span>
         <span class="go">›</span></button>`;})():''}
       <button class="ctt" id="logGo" style="margin-bottom:12px">
-        <span class="ic">✎</span>
+        <span class="iconbox md rose">${ic('edit',17)}</span>
         <span><span class="t">오늘 기록하기</span>
           <span class="s">${(()=>{const L=getLog(),n=Object.keys(L).length;
             if(S.gender==='M'){ const mss=maleSignals();
@@ -3365,17 +3523,16 @@ function renderHome(){
         <span class="go">›</span></button>
       ${(()=>{seedCal();seedPointLog();return syncBarHTML();})()}
       ${(()=>{const n=NOTICES.find(x=>x.pin&&!S.notice.read.includes(x.id));
-        return n?`<button class="syncbar" id="ntBar" style="background:#F3F5FB;border-color:#E1E6F2">
-          <span class="ic2" style="background:var(--sperm)">!</span>
-          <span style="flex:1"><span class="t">${n.t}</span>
-            <span class="s">${n.cat} · ${n.at} · 눌러서 확인</span></span>
-          <span class="go">›</span></button>`:'';})()}
-      ${(surveyDue()&&S.challenge.history.length)?`<button class="syncbar" id="svBar"
-        style="background:#EEF3F1;border-color:#DCE7E3">
-        <span class="ic2" style="background:var(--ok)">?</span>
-        <span style="flex:1"><span class="t">${SURVEYS[surveyDue()].t}</span>
-          <span class="s">${SURVEYS[surveyDue()].min} · 참여 시 500P · 답변은 익명으로 집계됩니다</span></span>
-        <span class="go">›</span></button>`:''}
+        return n?`<button class="bnr blue2" id="ntBar">
+          <span class="bic">${ic('megaphone',16)}</span>
+          <span class="bbd"><span class="bt">${n.t}</span>
+            <span class="bs">${n.cat} · ${n.at} · 눌러서 확인</span></span>
+          <span class="bgo">${ic('plus',14)}</span></button>`:'';})()}
+      ${(surveyDue()&&S.challenge.history.length)?`<button class="bnr teal2" id="svBar">
+        <span class="bic">${ic('info',16)}</span>
+        <span class="bbd"><span class="bt">${SURVEYS[surveyDue()].t}</span>
+          <span class="bs">${SURVEYS[surveyDue()].min} · 참여 시 500P · 답변은 익명으로 집계됩니다</span></span>
+        <span class="bgo">${ic('check',14)}</span></button>`:''}
       ${c.warn?`<div class="warn">${c.warn}</div>`:''}
       ${c.quiet?`<div class="quiet">${c.quiet}</div>`:''}
 
@@ -3425,7 +3582,7 @@ function renderHome(){
             </span></div>`;
         }).join('')}
         ${(auto.locked||[]).map(l=>`<div class="lockcard" style="margin-bottom:7px;padding:13px 14px">
-          <span class="lk2" style="width:30px;height:30px;font-size:12px">🔒</span>
+          <span class="iconbox sm2 dim">${ic('lock',15)}</span>
           <span style="flex:1"><span class="t" style="font-size:12.5px">${l.t}</span>
             <span class="s">${l.s}</span></span>
           <button class="btn ghost sm" id="${l.cta==='연동 설정'?'todoLink':'todoLog'}"
@@ -3481,7 +3638,7 @@ function renderHome(){
       <div class="slotlbl"><span class="eyebrow">맞춤 콘텐츠</span><hr></div>
       ${rankContent(4).map((x,i)=>`<button class="ctt" data-ct="${x.t}" data-cg="${x.c}">
         <span class="ic">${String(i+1).padStart(2,'0')}</span>
-        <span><span class="t"><span class="${x.free?'freebadge':'paidbadge'}">${x.free?'무료':'유료'}</span>${x.t}</span>
+        <span><span class="t">${x.t}</span>
           <span class="s"><span class="tag ${x.why==='지금 시점'?'hot':''}"
             style="font-size:8.5px;padding:2px 5px;margin-right:5px">${x.why}</span>${x.c} · 감수 2026.05${S.saved.includes(x.t)?' · ★':''}</span></span>
         <span class="go">›</span></button>`).join('')}
@@ -3632,7 +3789,6 @@ function renderLogField(f){
     body=`<div class="optrow">${LHLV.map(([v,n,c])=>`
       <button class="optbig ${L.lh===v?'sel':''}" data-v="${v}">
         <span class="pic" style="background:${c};border:1px solid rgba(0,0,0,.08)"></span>${n}</button>`).join('')}</div>
-      <button class="altbtn" id="cam" style="margin-bottom:12px">📷 검사지 사진으로 자동 판독</button>
       <div class="card">
         <div class="eyebrow">검사 시각</div>
         <div style="display:flex;gap:7px;margin-top:10px">
@@ -3807,9 +3963,6 @@ function renderLogField(f){
   }
   const tg2=document.getElementById('tg2');
   if(tg2) tg2.onclick=()=>{S.logField=null;S.view='tguide';renderTempGuide();};
-  const cam=document.getElementById('cam');
-  if(cam) cam.onclick=()=>{ setLog(key,'lh','pos'); setLog(key,'lhTime','오후 2~5시');
-    renderLogField(f); };
   document.getElementById('sv').onclick=()=>{
     S.fri=friOf(S.a,S.gender); back();};
   updateInsp();
@@ -4052,10 +4205,9 @@ function renderSaved(){
     <div style="font-size:11.5px;color:var(--ink-3);line-height:1.65;margin-bottom:11px">
       ${list.length}개를 저장하셨습니다. 저장한 글은 단계가 바뀌어도 사라지지 않습니다.</div>
     ${list.map(x=>`<div class="ctt" style="align-items:flex-start">
-      <span class="ic" style="background:${x.free?'#E4F2F0':'#FBF0E0'};
-        color:${x.free?'var(--ok)':'var(--amber)'};font-size:11px">★</span>
+      <span class="iconbox md ${x.free?'teal':'amber'}">${ic('star',16)}</span>
       <button style="flex:1;text-align:left" data-ct2="${x.t}" data-cg2="${x.c}">
-        <span class="t"><span class="${x.free?'freebadge':'paidbadge'}">${x.free?'무료':'유료'}</span>${x.t}</span>
+        <span class="t">${x.t}</span>
         <span class="s">${x.c}${x.st?' · '+x.st+' 단계':''}</span></button>
       <button data-un="${x.t}" style="flex:0 0 auto;color:var(--ink-3);font-size:11px;padding:4px 6px">해제</button>
     </div>`).join('')}
@@ -4066,7 +4218,7 @@ function renderSaved(){
       </div>
     </div>`
     :`<div class="card" style="text-align:center;padding:30px 20px">
-      <div style="font-size:26px;margin-bottom:12px;color:var(--ink-3)">★</div>
+      <div class="iconbox lg dim" style="margin:0 auto 14px">${ic('star',22)}</div>
       <div style="font-size:13.5px;font-weight:600;margin-bottom:6px">저장한 글이 없습니다</div>
       <div style="font-size:12px;color:var(--ink-2);line-height:1.75;margin-bottom:16px">
         콘텐츠를 읽다가 하단의 <b>저장</b> 버튼을 누르면<br>여기에 모입니다.</div>
@@ -4082,14 +4234,395 @@ function renderSaved(){
   bindBack();
 }
 
+/* ══ 아이콘 시스템 ════════════════════════
+   24×24 스트로크 기반. 이모지를 쓰지 않는 이유 —
+   OS·기기마다 모양과 크기가 달라 정렬이 깨지고,
+   임신 준비라는 주제에 이모지의 캐주얼한 톤이 맞지 않음.
+──────────────────────────────────────── */
+const ICON = {
+  home:    'M3 10.5 12 3l9 7.5M5.5 9.5V20h13V9.5M9.5 20v-6h5v6',
+  calendar:'M4 6.5h16v14H4zM4 10.5h16M8.5 3.5v4M15.5 3.5v4',
+  flag:    'M6 21V4M6 4h11l-2 4 2 4H6',
+  people:  'M9 11a3.2 3.2 0 1 0 0-6.4A3.2 3.2 0 0 0 9 11ZM2.5 20c0-3.6 2.9-5.4 6.5-5.4s6.5 1.8 6.5 5.4M16.5 5.2a3 3 0 0 1 0 5.9M18 14.9c2 .6 3.5 2 3.5 4.4',
+  user:    'M12 11.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 20.5c0-4.1 3.6-6.2 8-6.2s8 2.1 8 6.2',
+  bell:    'M12 3.5a5.5 5.5 0 0 0-5.5 5.5c0 4-1.5 5.5-2 6.5h15c-.5-1-2-2.5-2-6.5A5.5 5.5 0 0 0 12 3.5ZM9.8 19a2.4 2.4 0 0 0 4.4 0',
+  point:   'M12 3.2 14.7 9l6.3.9-4.6 4.4 1.1 6.3-5.5-3-5.5 3 1.1-6.3L3 9.9 9.3 9Z',
+  gift:    'M4 9.5h16v11H4zM4 9.5V7.5h16v2M12 7.5v13M12 7.5c-1.4-2.7-5.8-3.4-5.8-.6 0 .4.3.6.8.6M12 7.5c1.4-2.7 5.8-3.4 5.8-.6 0 .4-.3.6-.8.6',
+  star:    'M12 3.5 14.6 9l6 .9-4.3 4.2 1 6-5.3-2.8-5.3 2.8 1-6L3.4 9.9l6-.9Z',
+  shield:  'M12 3.2 4.5 6v6.3c0 4.4 3.1 7.4 7.5 8.5 4.4-1.1 7.5-4.1 7.5-8.5V6Z M9.2 12.2l2 2 3.6-3.8',
+  doc:     'M6 3.5h8l4 4v13H6zM14 3.5v4h4M9 12.5h6M9 16h6',
+  card:    'M3 6.5h18v11H3zM3 10.5h18M6.5 14.5h3',
+  compare: 'M4 5.5h7v13H4zM13 5.5h7v13h-7zM6.5 9.5h2M15.5 9.5h2M15.5 13h2',
+  link:    'M9.5 14.5 14.5 9.5M8 12 6 14a3 3 0 0 0 4.2 4.2l2-2M16 12l2-2A3 3 0 0 0 13.8 5.8l-2 2',
+  watch:   'M8 7.5h8v9H8zM9.5 7.5 9 3.5h6l-.5 4M9.5 16.5 9 20.5h6l-.5-4M12 10v2.2l1.5 1',
+  data:    'M4 19.5V13M9.3 19.5V8.5M14.7 19.5v-6M20 19.5V4.5',
+  note:    'M6 3.5h12v17H6zM9 8h6M9 11.5h6M9 15h3',
+  temp:    'M12 3.5a2 2 0 0 1 2 2v8.2a4 4 0 1 1-4 0V5.5a2 2 0 0 1 2-2ZM12 11v4.5',
+  moon:    'M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z',
+  steps:   'M7.5 3.5c1.7 0 2.5 1.4 2.5 3.5S9 13 7.5 13 5 11.1 5 7s.8-3.5 2.5-3.5ZM6 15.5h3.2v3.3a1.6 1.6 0 0 1-3.2 0ZM16.5 6.5c1.7 0 2.5 1.4 2.5 3.5s-1 6-2.5 6-2.5-1.9-2.5-6 .8-3.5 2.5-3.5ZM15 18.5h3.2v1.3a1.6 1.6 0 0 1-3.2 0Z',
+  lock:    'M6.5 10.5h11v10h-11zM9 10.5V7.8a3 3 0 0 1 6 0v2.7M12 14.5v2.5',
+  plus:    'M12 5.5v13M5.5 12h13',
+  check:   'M5 12.5l4.5 4.5L19 7.5',
+  edit:    'M4 20h4l11-11-4-4L4 16zM14.5 5.5l4 4',
+  target:  'M12 20.5a8.5 8.5 0 1 0 0-17 8.5 8.5 0 0 0 0 17ZM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM12 13.2a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4',
+  flask:   'M9 3.5h6M10 3.5v5L6 18a2 2 0 0 0 1.8 2.5h8.4A2 2 0 0 0 18 18l-4-9.5v-5M7.5 14.5h9',
+  pill:    'M14.5 3.8a5 5 0 0 1 7 7l-7.7 7.7a5 5 0 0 1-7-7ZM10.8 7.5l6.6 6.6',
+  ticket:  'M3 8.5h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4ZM9 8.5v11M13 11.5h4M13 15h4',
+  clock:   'M12 20.5a8.5 8.5 0 1 0 0-17 8.5 8.5 0 0 0 0 17ZM12 7.5V12l3.2 2',
+  info:    'M12 20.5a8.5 8.5 0 1 0 0-17 8.5 8.5 0 0 0 0 17ZM12 11v5.5M12 7.8v.4',
+  sparkle: 'M12 3.5l1.8 5.2 5.2 1.8-5.2 1.8L12 17.5l-1.8-5.2L5 10.5l5.2-1.8ZM18.5 16l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8Z',
+  chart:   'M4 4.5v15h16M7.5 15.5l3.5-4 3 2.5 4.5-6',
+  cart:    'M3 5.5h2.5l2.6 9.5h9.4l2.5-7H6.6M9.5 20a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6ZM17 20a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6',
+  megaphone:'M4 10.5v3l10 4.5V6ZM14 8h2.5a4 4 0 0 1 0 8H14M6 14v4.5h3V15',
+  key:     'M14.5 3.5a6 6 0 1 0-2.3 11.5L11 16.2v2h-2v2H5.5v-3.5l6.7-6.7A6 6 0 0 1 14.5 3.5ZM16 8.2a1 1 0 1 0 0-2 1 1 0 0 0 0 2',
+};
+function ic(n, sz, sw){
+  const d=ICON[n]; if(!d) return '';
+  return `<svg class="ico" viewBox="0 0 24 24" width="${sz||18}" height="${sz||18}"
+    fill="none" stroke="currentColor" stroke-width="${sw||1.6}"
+    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+}
+
+/* ══ 회원 · 세션 정책 ═════════════════════
+   1계정 = 1회원 원칙. 동일인의 복수 계정은 식별하지 않으며
+   기록·포인트·구독·파트너 연결은 모두 계정 단위로 독립함.
+──────────────────────────────────────── */
+const MEMBER_POLICY = {
+  autoLoginDays: 90,      // 자동 로그인 유효기간 (마지막 활동 기준 갱신)
+  maxSessions: 3,         // 동시 로그인 허용 기기 수
+  dormantMonths: 12,      // 휴면 전환
+  deleteMonths: 24,       // 휴면 후 계정 삭제
+  withdrawGraceDays: 7,   // 탈퇴 후 복구 유예
+  rejoinBonusBlockDays: 90, // 재가입 시 가입 포인트 미지급 기간
+};
+function seedSessions(){
+  S.auth.sessions=S.auth.sessions||[]; S.auth.loginLog=S.auth.loginLog||[];
+  S.auth.lastLogin=S.auth.lastLogin||'2026.09.08 09:12';
+  S.auth.joinedAt=S.auth.joinedAt||'2026.03.11';
+  if(S.auth.autoLogin===undefined) S.auth.autoLogin=true;
+  if(S.auth.sessions.length) return;
+  S.auth.sessions=[
+    {id:'s1', dev:'iPhone 16 Pro', os:'iOS 19.2', at:'2026.09.08 09:12',
+     loc:'서울', cur:true},
+    {id:'s2', dev:'iPad Air', os:'iPadOS 19.1', at:'2026.09.02 21:40',
+     loc:'서울', cur:false},
+    {id:'s3', dev:'Chrome · macOS', os:'웹', at:'2026.08.27 13:05',
+     loc:'경기', cur:false},
+  ];
+  S.auth.loginLog=[
+    {at:'2026.09.08 09:12', dev:'iPhone 16 Pro', how:'자동 로그인', ok:true},
+    {at:'2026.09.02 21:40', dev:'iPad Air', how:'카카오', ok:true},
+    {at:'2026.08.31 08:02', dev:'알 수 없는 기기', how:'카카오', ok:false},
+    {at:'2026.08.27 13:05', dev:'Chrome · macOS', how:'카카오', ok:true},
+    {at:'2026.08.20 19:33', dev:'iPhone 16 Pro', how:'자동 로그인', ok:true},
+  ];
+}
+function daysSince(str){
+  const d=(str||'').split(' ')[0].replace(/\./g,'-').replace(/-$/,'');
+  const t=parseD(d);
+  if(!t||isNaN(t)) return 0;
+  return Math.max(0, Math.round((today0()-t)/DAY));
+}
+
+/* ══ 계정 · 보안 ══════════════════════════ */
+function mySubSecurity(){
+  seedSessions();
+  const P=MEMBER_POLICY;
+  const last=S.auth.lastLogin;
+  paint(`${subHead('계정 및 보안')}<div class="pad">
+    <div class="card" style="background:var(--ink);border-color:var(--ink);color:#fff">
+      <div class="eyebrow" style="color:rgba(255,255,255,.5)">이 계정</div>
+      <div style="font-size:15px;font-weight:600;margin:8px 0 4px">${S.auth.nickname||'회원'}</div>
+      <div style="font-size:11.5px;color:rgba(255,255,255,.66);line-height:1.75">
+        ${SNSNAME[S.auth.provider]||'—'} · ${S.auth.email||'—'}<br>
+        가입 ${S.auth.joinedAt} · 마지막 로그인 ${last}</div>
+    </div>
+
+    <div class="card" style="background:#F3F5FB;border-color:#E1E6F2">
+      <div style="font-size:12px;color:var(--ink-2);line-height:1.85">
+        <b style="color:var(--ink)">이 앱은 계정 하나를 회원 한 명으로 봅니다.</b><br>
+        같은 분이 여러 계정을 만드실 수는 있지만, 회사는 누가 어떤 계정을 가졌는지 확인하지 않습니다.
+        따라서 <b>기록·포인트·구독·파트너 연결은 모두 계정별로 따로</b> 관리되며,
+        계정 사이를 옮기거나 합칠 수 없습니다.
+      </div>
+    </div>
+
+    <div class="slotlbl"><span class="eyebrow">자동 로그인</span><hr></div>
+    <div class="card">
+      <div class="field" style="padding-top:12px">
+        <span class="k"><b style="color:var(--ink);font-weight:600">자동 로그인 사용</b>
+          <small style="display:block;font-size:11px;color:var(--ink-3);margin-top:2px;line-height:1.6">
+            켜두시면 ${P.autoLoginDays}일 동안 다시 로그인하지 않아도 됩니다.
+            앱을 쓰실 때마다 기간이 다시 ${P.autoLoginDays}일로 늘어납니다.</small></span>
+        <span class="toggle ${S.auth.autoLogin?'on':''}" data-al="1"></span></div>
+      <div class="field" style="border:none">
+        <span class="k">남은 기간
+          <small style="display:block;font-size:11px;color:var(--ink-3);margin-top:2px">
+            마지막 활동 ${last}</small></span>
+        <span class="v">${S.auth.autoLogin?`${Math.max(0,P.autoLoginDays-daysSince(last))}일 남음`:'사용 안 함'}</span></div>
+      <div class="privnote" style="margin-top:11px">
+        <b>다시 확인이 필요한 경우</b><br>
+        결제 수단 변경, 배송지 저장, 데이터 내려받기, 회원 탈퇴처럼 민감한 작업을 하실 때는
+        자동 로그인 상태여도 한 번 더 본인 확인을 요청합니다.
+      </div>
+    </div>
+
+    <div class="slotlbl"><span class="eyebrow">로그인된 기기 ${S.auth.sessions.length} / ${P.maxSessions}</span><hr></div>
+    <div class="card">
+      ${S.auth.sessions.map(x=>`<div class="devrow ${x.cur?'cur2':''}">
+        <span class="di">${x.os.includes('iOS')||x.os.includes('iPad')?'▢':x.os==='웹'?'▤':'▣'}</span>
+        <span style="flex:1"><span class="t">${x.dev}
+          ${x.cur?'<span class="tag ok" style="margin-left:5px;font-size:8.5px">현재 기기</span>':''}</span>
+          <span class="s">${x.os} · ${x.loc} · ${x.at}</span></span>
+        ${x.cur?'':`<button class="btn ghost sm" data-so="${x.id}"
+          style="width:auto;padding:6px 11px;font-size:11px">로그아웃</button>`}
+      </div>`).join('')}
+      <div style="font-size:10.5px;color:var(--ink-3);line-height:1.7;margin-top:11px;
+        border-top:1px solid var(--line);padding-top:10px">
+        최대 <b>${P.maxSessions}대</b>까지 동시에 로그인할 수 있습니다.
+        ${P.maxSessions+1}번째 기기에서 로그인하시면 <b>가장 오래된 기기가 자동으로 로그아웃</b>됩니다.
+        새 기기에서 로그인되면 알림을 보내드립니다.
+      </div>
+      ${S.auth.sessions.length>1?`<button class="btn ghost sm" id="allout" style="margin-top:11px">
+        현재 기기만 남기고 모두 로그아웃</button>`:''}
+    </div>
+
+    <div class="slotlbl"><span class="eyebrow">최근 로그인 기록</span><hr></div>
+    <div class="card">
+      <div class="loglist">
+        ${S.auth.loginLog.map(x=>`<div class="${x.ok?'':'bad'}">
+          ${x.at} · ${x.dev} · ${x.how} ${x.ok?'':'· 실패'}</div>`).join('')}
+      </div>
+      <div style="font-size:10.5px;color:var(--ink-3);line-height:1.7;margin-top:10px;
+        border-top:1px solid var(--line);padding-top:9px">
+        최근 10건까지 보관합니다. 모르는 기록이 있다면 즉시 로그아웃하시고 고객센터로 알려주세요.
+      </div>
+    </div>
+
+    <div class="slotlbl"><span class="eyebrow">오래 안 쓰시면</span><hr></div>
+    <div class="card">
+      <div class="stepline"><span class="num2">1</span>
+        <span><span class="t">${P.autoLoginDays}일 미접속 — 자동 로그아웃</span>
+          <span class="s">자동 로그인이 풀립니다. 다시 로그인하시면 그대로 이어집니다.</span></span></div>
+      <div class="stepline"><span class="num2 warn2">2</span>
+        <span><span class="t">${P.dormantMonths}개월 미접속 — 휴면 계정</span>
+          <span class="s">30일 전에 이메일과 알림으로 미리 안내드립니다.
+            휴면이 되면 정보가 분리 보관되고 서비스 이용이 멈춥니다.
+            <b>본인 확인만 하시면 바로 되돌릴 수 있습니다.</b></span></span></div>
+      <div class="stepline"><span class="num2 dan">3</span>
+        <span><span class="t">${P.deleteMonths}개월 미접속 — 계정 삭제</span>
+          <span class="s">삭제 30일 전에 다시 안내드립니다. 삭제 후에는 복구할 수 없습니다.</span></span></div>
+      <div class="warn" style="margin-top:6px">
+        휴면 상태에서도 <b>포인트 유효기간은 계속 흐릅니다.</b>
+        적립일로부터 12개월이 지난 포인트는 휴면 여부와 관계없이 사라집니다.
+      </div>
+    </div>
+
+    <button class="btn ghost sm" id="toWd" style="color:var(--fertile);border-color:#F0D4DC">회원 탈퇴</button>
+  </div>`);
+  const al=scr.querySelector('[data-al]');
+  if(al) al.onclick=()=>{S.auth.autoLogin=!S.auth.autoLogin;renderMySub();};
+  scr.querySelectorAll('[data-so]').forEach(b=>b.onclick=()=>{
+    S.auth.sessions=S.auth.sessions.filter(x=>x.id!==b.dataset.so); renderMySub();});
+  const ao=document.getElementById('allout');
+  if(ao) ao.onclick=()=>{S.auth.sessions=S.auth.sessions.filter(x=>x.cur);renderMySub();};
+  document.getElementById('toWd').onclick=()=>{S.myView='withdraw';S.wdStep=0;renderMySub();};
+  bindBack();
+}
+
+/* ══ 회원 탈퇴 ════════════════════════════ */
+function mySubWithdraw(){
+  seedPointLog();
+  const P=MEMBER_POLICY;
+  const st=S.wdStep||0;
+  if(st===0){
+    const items=[
+      ['건강 기록', `주기 ${cycleModel(S.a).n||0}회 · 수기 기록 ${Object.keys(S.logs).length}일`, '즉시 삭제'],
+      ['포인트', `${S.point.balance.toLocaleString()}P`, '즉시 소멸 · 환급 불가'],
+      ['등록 카드', S.sub.card?`${S.sub.card.brand} ···· ${S.sub.card.last4}`:'없음', S.sub.card?'즉시 삭제':'—'],
+      ['파트너 연결', S.a.partner==='now'?'연결됨':'없음', S.a.partner==='now'?'해제 · 상대에게 통지':'—'],
+      ['저장한 콘텐츠', `${S.saved.length}개`, '즉시 삭제'],
+      ['주문 내역', `${S.orders.length}건`, '법령상 5년 보관'],
+    ];
+    paint(`<div class="subhead"><button id="mb">‹</button><span class="t">회원 탈퇴</span></div>
+      <div class="pad">
+        <div class="qtitle" style="font-size:19px;margin:6px 0 8px">정말 떠나시겠어요?</div>
+        <div style="font-size:12.5px;color:var(--ink-2);line-height:1.85;margin-bottom:14px">
+          탈퇴하시면 아래 정보가 사라집니다. 계정을 새로 만드셔도 <b>이전 기록을 되살릴 수 없습니다.</b>
+        </div>
+        <div class="card">
+          <div class="eyebrow">사라지는 것</div>
+          ${items.map((x,i,a)=>`<div class="field" ${i===a.length-1?'style="border:none"':''}>
+            <span class="k">${x[0]}<small style="display:block;font-size:10.5px;color:var(--ink-3);margin-top:2px">${x[1]}</small></span>
+            <span class="v" style="font-size:11px;font-weight:400;
+              color:${x[2].includes('삭제')||x[2].includes('소멸')?'var(--fertile)':'var(--ink-3)'};max-width:120px">${x[2]}</span></div>`).join('')}
+        </div>
+
+        <div class="card" style="background:#EEF3F1;border-color:#DCE7E3">
+          <div style="font-size:12.5px;color:var(--ink-2);line-height:1.85">
+            <b style="color:var(--ok)">${P.withdrawGraceDays}일 안에는 되돌릴 수 있습니다.</b><br>
+            탈퇴하시면 바로 로그인이 막히지만, 데이터는 <b>${P.withdrawGraceDays}일 뒤에</b> 완전히 지웁니다.
+            그 안에 고객센터로 연락하시면 그대로 되살려 드립니다.
+          </div>
+        </div>
+
+        <div class="warn">
+          <b>탈퇴 전에 확인해 주세요</b><br>
+          · 진행 중인 구독은 <b>먼저 해지</b>하셔야 합니다. 탈퇴만으로는 결제가 멈추지 않습니다<br>
+          · 배송 중인 주문이 있으면 수령 후에 탈퇴해 주세요<br>
+          · ${P.rejoinBonusBlockDays}일 안에 다시 가입하시면 <b>가입 축하 포인트는 지급되지 않습니다</b>
+        </div>
+
+        <button class="btn ghost sm" id="dl2">떠나기 전에 내 데이터 내려받기</button>
+        <button class="btn" id="nx3" style="margin-top:8px;background:var(--fertile)">탈퇴 계속하기</button>
+        <button class="btn ghost sm" id="cx" style="margin-top:8px">그냥 둘러볼게요</button>
+      </div>`);
+    document.getElementById('mb').onclick=()=>{S.myView='security';renderMySub();};
+    document.getElementById('cx').onclick=()=>{S.myView='security';renderMySub();};
+    document.getElementById('nx3').onclick=()=>{S.wdStep=1;renderMySub();};
+    document.getElementById('dl2').onclick=()=>{S.wdStep=1;renderMySub();};
+    return;
+  }
+  if(st===1){
+    const R=['원하는 결과를 얻었어요','기록이 번거로워요','예측이 잘 맞지 않아요',
+             '알림이 부담스러워요','가격이 부담돼요','당분간 쉬고 싶어요','기타'];
+    paint(`<div class="subhead"><button id="mb">‹</button><span class="t">회원 탈퇴</span></div>
+      <div class="pad">
+        <div class="qtitle" style="font-size:19px;margin:6px 0 6px">떠나시는 이유를 알려주시겠어요</div>
+        <div class="qsub">선택 사항입니다. 답하지 않으셔도 탈퇴하실 수 있습니다.</div>
+        ${R.map(r=>`<button class="opt sq ${(S.wdReason||[]).includes(r)?'sel':''}" data-wr="${r}">
+          <span class="dot"></span><span>${r}</span></button>`).join('')}
+        <div class="inp" style="margin-top:8px"><label>더 하고 싶은 말 (선택)</label>
+          <input id="wt" placeholder="자유롭게 적어주세요" value="${S.wdNote||''}"></div>
+        <button class="btn" id="nx3" style="background:var(--fertile)">다음</button>
+      </div>`);
+    document.getElementById('mb').onclick=()=>{S.wdStep=0;renderMySub();};
+    scr.querySelectorAll('[data-wr]').forEach(b=>b.onclick=()=>{
+      let c=S.wdReason||[]; const v=b.dataset.wr;
+      S.wdReason = c.includes(v)? c.filter(x=>x!==v):[...c,v]; renderMySub();});
+    const wt=document.getElementById('wt'); if(wt) wt.oninput=()=>{S.wdNote=wt.value;};
+    document.getElementById('nx3').onclick=()=>{S.wdStep=2;renderMySub();};
+    return;
+  }
+  const ok=S.wdConfirm;
+  paint(`<div class="subhead"><button id="mb">‹</button><span class="t">회원 탈퇴</span></div>
+    <div class="pad">
+      <div class="qtitle" style="font-size:19px;margin:6px 0 8px">마지막 확인입니다</div>
+      <div class="card" style="background:#FDF0F4;border-color:#F0D4DC">
+        <div style="font-size:12.5px;color:var(--fertile);line-height:1.9">
+          · 건강 기록 전부와 <b>${S.point.balance.toLocaleString()}P</b>가 사라집니다<br>
+          · ${MEMBER_POLICY.withdrawGraceDays}일이 지나면 되돌릴 수 없습니다<br>
+          · 같은 이메일로 다시 가입하셔도 이전 기록은 복구되지 않습니다
+        </div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">본인 확인</div>
+        <div style="font-size:11.5px;color:var(--ink-2);line-height:1.75;margin:8px 0 11px">
+          자동 로그인 상태이므로 한 번 더 확인합니다.
+          ${SNSNAME[S.auth.provider]||'가입하신 수단'}으로 다시 인증해 주세요.</div>
+        <button class="btn ghost sm" id="reauth" style="${ok?'border-color:var(--ok);color:var(--ok)':''}">
+          ${ok?'✓ 본인 확인 완료':`${SNSNAME[S.auth.provider]||''} 재인증`}</button>
+      </div>
+      <button class="btn" id="fin" ${ok?'':'disabled'} style="background:var(--fertile)">탈퇴하기</button>
+      <button class="btn ghost sm" id="cx" style="margin-top:8px">취소</button>
+    </div>`);
+  document.getElementById('mb').onclick=()=>{S.wdStep=1;renderMySub();};
+  document.getElementById('cx').onclick=()=>{S.wdStep=0;S.wdConfirm=false;S.myView='security';renderMySub();};
+  document.getElementById('reauth').onclick=()=>{S.wdConfirm=true;renderMySub();};
+  document.getElementById('fin').onclick=()=>{
+    tabsEl.style.display='none';
+    paint(`<div class="pad" style="padding-top:60px;text-align:center">
+      <div class="iconbox lg dim" style="margin:0 auto 16px">${ic('info',22)}</div>
+      <div class="qtitle" style="font-size:20px">탈퇴가 접수됐습니다</div>
+      <div class="qsub" style="text-align:center">그동안 함께해 주셔서 고맙습니다.</div>
+      <div class="card" style="margin-top:20px;text-align:left">
+        <div style="font-size:12.5px;color:var(--ink-2);line-height:1.9">
+          지금부터 로그인이 막힙니다.<br>
+          데이터는 <b>${MEMBER_POLICY.withdrawGraceDays}일 뒤인
+          ${(()=>{const d=new Date(today0().getTime()+MEMBER_POLICY.withdrawGraceDays*DAY);
+            return `${d.getFullYear()}. ${String(d.getMonth()+1).padStart(2,'0')}. ${String(d.getDate()).padStart(2,'0')}`;})()}</b>에
+          완전히 지워집니다.<br><br>
+          그 전에 마음이 바뀌시면 <b>support@freyax.kr</b>로 연락해 주세요. 그대로 되살려 드립니다.
+        </div>
+      </div>
+      <button class="btn ghost sm" id="rs2" style="margin-top:16px">처음 화면으로</button>
+    </div>`);
+    document.getElementById('rs2').onclick=()=>resetAll();
+  };
+}
+
+/* ══ 제공 범위 · 매출 구조 안내 ═══════════ */
+function mySubPlans(){
+  paint(`${subHead('서비스 제공 범위')}<div class="pad">
+    <div class="bnr dark">
+      <span class="bic">${ic('check',16)}</span>
+      <span class="bbd"><span class="bt">모든 기능을 무료로 제공합니다</span>
+        <span class="bs">구독료도, 기능 잠금도 없습니다. 기록·예측·콘텐츠·챌린지 전부 열려 있습니다.</span></span>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">제공 기능</div>
+      ${FREE_ALL.map((x,i2,a)=>`<div class="field" ${i2===a.length-1?'style="border:none"':''}>
+        <span class="k">${x[0]}</span>
+        <span class="v" style="font-size:11px;font-weight:400;color:var(--ink-3);max-width:150px">
+          ${x[1]==='—'?'<span class="bdg teal">무료</span>':x[1]}</span></div>`).join('')}
+    </div>
+
+    <div class="card" style="background:#EEF3F1;border-color:#DCE7E3">
+      <div class="eyebrow" style="color:var(--ok)">왜 무료인가</div>
+      <div style="font-size:12.5px;color:var(--ink-2);line-height:1.9;margin-top:8px">
+        임신 준비에서 <b>정확한 정보에 접근하는 것</b>은 형편에 따라 달라져서는 안 된다고 봅니다.
+        검사 시점 안내, 위험신호 표시, 배란 확인 같은 기능을 결제 뒤에 두면
+        정작 필요한 분이 못 쓰게 됩니다.<br><br>
+        그래서 <b>기능은 전부 열고</b>, 매출은 아래에서 만듭니다.
+      </div>
+    </div>
+
+    <div class="slotlbl"><span class="eyebrow">매출은 이렇게 만듭니다</span><hr></div>
+    <div class="iapbox">
+      <div class="ih">${ic('cart',15)}<b>상점 커머스</b><span class="bdg teal">주력</span></div>
+      <p>검사 키트·기초체온계·영양제를 <b>포인트 또는 카드</b>로 구매하실 수 있습니다.
+        기록에 실제로 필요한 물건만 취급하며, 필요 없는 상품을 권하지 않습니다.</p>
+    </div>
+    <div class="iapbox">
+      <div class="ih">${ic('link',15)}<b>제휴 상품</b><span class="bdg neutral">보조</span></div>
+      <p>직접 취급하지 않는 상품은 제휴사 링크로 안내하고 수수료를 받습니다.
+        <b>제휴 여부는 상품마다 표시</b>합니다.</p>
+    </div>
+    <div class="iapbox">
+      <div class="ih">${ic('people',15)}<b>기업 · 기관 제공</b><span class="bdg blue">확대 예정</span></div>
+      <p>회사나 기관이 임직원·주민에게 서비스를 제공하는 형태입니다.
+        비용은 기관이 부담하고, <b>이용하시는 분은 계속 무료</b>입니다.</p>
+    </div>
+
+    <div class="card" style="background:#FDF8F0;border-color:#F0E0C4">
+      <div class="eyebrow" style="color:var(--amber)">하지 않는 것</div>
+      <div style="font-size:12px;color:#7A5514;line-height:1.9;margin-top:8px">
+        · <b>건강 정보를 근거로 한 광고 타겟팅</b><br>
+        · 앱 실행·홈 진입 시 전면 팝업 광고<br>
+        · 병원·의료진 상위노출 광고<br>
+        · 개인을 식별할 수 있는 형태의 데이터 판매<br>
+        · 기록·예측 기능의 유료화
+      </div>
+    </div>
+    <div class="privnote">
+      광고를 붙이더라도 <b>주기·진단 같은 건강 정보를 근거로 하지 않습니다.</b>
+      민감정보 기반 타겟팅은 법적으로도 위험하고, 무엇보다 이 서비스가 신뢰를 잃는 가장 빠른 길입니다.
+    </div>
+    <button class="btn" id="toShop3">상점 둘러보기</button>
+  </div>`);
+  document.getElementById('toShop3').onclick=()=>{S.myView='shop';renderMySub();};
+  bindBack();
+}
+
 /* ══ 공지사항 ═════════════════════════════ */
 const NOTICES = [
  {id:'n1', cat:'업데이트', t:'v4.0 업데이트 — 포인트 상점과 공지사항이 열렸습니다',
   at:'2026.08.28', pin:true,
   body:[['새로 생긴 것',
     '모은 포인트로 배란테스트기·기초체온계·영양제를 교환하실 수 있는 <b>포인트 상점</b>이 열렸습니다.\n공지사항과 이벤트 안내도 앱에서 바로 확인하실 수 있습니다.'],
-   ['요금제가 바뀝니다',
-    '기존 Care·Cycle+ 대신 <b>Self Care</b>와 <b>With Partner</b>로 나뉩니다.\n혼자 관리하실지, 파트너와 함께하실지에 따라 고르시면 됩니다.\n기존 구독 회원은 다음 결제일까지 현재 혜택이 유지됩니다.'],
+   ['구독 모델을 도입하지 않기로 했습니다',
+    '검토했던 유료 구독을 <b>도입하지 않습니다.</b>\n기록·예측·콘텐츠·챌린지 등 <b>모든 기능을 계속 무료로</b> 제공합니다.\n검사 시점 안내처럼 건강에 직접 닿는 기능을 결제 뒤에 두지 않기로 했습니다.\n매출은 상점 커머스와 기관 제공으로 확보합니다.'],
    ['포인트 유효기간 안내',
     '적립하신 포인트는 <b>적립일로부터 12개월</b>간 유효합니다.\n만료 30일 전에 알림을 보내드립니다.']]},
  {id:'n2', cat:'이벤트', t:'첫 챌린지 완주 이벤트 당첨자 발표',
@@ -4199,12 +4732,12 @@ const SHOP = [
  {id:'s9', cat:'supp', t:'이노시톨 파우더 (PCOS)', p:24900, ship:true,
   d:'다낭성난소증후군 진단을 받으신 분들이 자주 찾습니다. 복용 전 담당의와 상의하세요.',
   note:'건강기능식품 · 복용 전 전문가 상의 권장'},
- {id:'s10', cat:'service', t:'Self Care 1개월 이용권', p:9900, ship:false,
-  d:'구독료 1개월분을 포인트로 대체합니다. 자동 결제일이 한 달 미뤄집니다.',
-  note:'디지털 상품 · 배송 없음', hot:true},
- {id:'s11', cat:'service', t:'프리미엄 콘텐츠 3개월 열람권', p:15000, ship:false,
-  d:'유료 표시된 모든 콘텐츠를 3개월간 제한 없이 읽으실 수 있습니다.',
-  note:'디지털 상품 · 배송 없음'},
+ {id:'s10', cat:'device', t:'배란 예측 손목밴드 (제휴)', p:39000, ship:true,
+  d:'야간 피부온도를 기록하는 제휴사 밴드입니다. 연동하면 배란 사후 확정이 켜집니다.',
+  note:'제휴 상품 · 제조사 보증 · 교환권으로 발송', hot:true},
+ {id:'s11', cat:'device', t:'스마트 체중계 (제휴)', p:29000, ship:true,
+  d:'건강 앱으로 체중이 자동 기록됩니다. 챌린지 진척률에 바로 반영됩니다.',
+  note:'제휴 상품 · 제조사 보증'},
  {id:'s12', cat:'service', t:'진료용 리포트 인쇄 발송', p:3000, ship:true,
   d:'진료용 요약 문서를 인쇄해 우편으로 보내드립니다.',
   note:'인쇄물 · 실명은 포함되지 않습니다'},
@@ -4214,18 +4747,25 @@ const SHOP = [
   d:'문자로 즉시 발송됩니다.', note:'디지털 상품 · 배송 없음'},
 ];
 
-/* ══ 요금제 ═══════════════════════════════ */
-const PLANS = {
-  free:{k:'free', n:'Free', price:0, yprice:0, sub:'혼자 기록만',
-    feat:['주기 기록 · 캘린더','기본 예측 (Tier 1~2)','무료 콘텐츠','커뮤니티',
-          '파트너 연결 (보기 전용)']},
-  self:{k:'self', n:'Self Care', price:9900, yprice:95000, sub:'혼자 관리',
-    feat:['정밀 예측 (Tier 3 · 수기 신호 반영)','전체 콘텐츠 열람','챌린지 전 프로그램',
-          '건강 데이터 연동','진료용 리포트','시술 일정 관리'], rec:true},
-  couple:{k:'couple', n:'With Partner', price:15900, yprice:152000, sub:'둘이 함께 · 계정 2개',
-    feat:['Self Care 전체 기능','파트너 계정 1개 포함','공유 캘린더 양방향 편집',
-          '주기 오버레이 (28일 + 90일)','커플 공동 목표','동행 알림']},
-};
+/* ══ 서비스 제공 범위 (전 기능 무료) ══════
+   2026-09 경영 결정 — 콘텐츠 구독 모델을 도입하지 않음.
+   부분 유료화가 건강 정보 접근을 가로막는 구조를 만들고,
+   신뢰를 훼손한다고 판단함. 모든 기능을 무료로 제공하고
+   매출은 상점 커머스·제휴·B2B에서 확보함.
+──────────────────────────────────────── */
+const FREE_ALL = [
+  ['주기 기록 · 캘린더','기간 제한 없음'],
+  ['정밀 예측 (Tier 1~3)','수기 신호·워치 체온 반영'],
+  ['전체 콘텐츠','38편 전문 열람'],
+  ['챌린지 전 프로그램','10종'],
+  ['건강 데이터 연동','워치 · 휴대폰'],
+  ['진료용 리포트','PDF 발급'],
+  ['시술 일정 관리','프로토콜 · D-day'],
+  ['파트너 연결 · 공유 캘린더','양방향 편집'],
+  ['주기 오버레이','28일 + 90일'],
+  ['커뮤니티 · 전문가에게 질문하기','—'],
+  ['포인트 적립 · 상점','—'],
+];
 
 /* ══ 만족도 조사 (효과 검증) ══════════════
    결과(임신)는 통제·측정이 어려우므로,
@@ -4480,7 +5020,7 @@ function renderPoint(){
 }
 
 /* ══ 포인트 상점 ══════════════════════════ */
-const SHOPIC={test:'🧪',device:'🌡',supp:'💊',service:'★',gift:'🎁'};
+const SHOPIC={test:'flask',device:'temp',supp:'pill',service:'ticket',gift:'gift'};
 function renderShop(){
   if(S.shop.item) return renderShopItem();
   seedPointLog();
@@ -4497,7 +5037,7 @@ function renderShop(){
     ${list.map(x=>{
       const lack=S.point.balance<x.p;
       return `<button class="shitem ${lack?'lack':''}" data-si="${x.id}">
-        <span class="thumb">${SHOPIC[x.cat]}</span>
+        <span class="thumb">${ic(SHOPIC[x.cat],22)}</span>
         <span style="flex:1">
           <span class="t">${x.hot?'<span class="tag hot" style="font-size:8px;padding:2px 5px;margin-right:5px">인기</span>':''}${x.t}</span>
           <span class="d2">${x.d}</span>
@@ -4528,7 +5068,7 @@ function renderShopItem(){
     <div class="pad">
       <div style="text-align:center;padding:18px 0">
         <div style="width:88px;height:88px;border-radius:22px;background:#EEF1F8;margin:0 auto 14px;
-          display:flex;align-items:center;justify-content:center;font-size:34px">${SHOPIC[x.cat]}</div>
+          display:flex;align-items:center;justify-content:center;color:var(--ink-2)">${ic(SHOPIC[x.cat],36,1.4)}</div>
         <div style="font-size:16px;font-weight:600;line-height:1.45">${x.t}</div>
         <div style="font-family:var(--mono);font-size:21px;font-weight:600;margin-top:9px">${x.p.toLocaleString()}P</div>
       </div>
@@ -5322,12 +5862,12 @@ function syncBarHTML(){
   const ch=S.cal.changes.find(c=>!c.seen);
   if(!ch || !sharedOn()) return '';
   const e=evtOf(ch.evtId); if(!e) return '';
-  return `<button class="syncbar" id="syncbar">
-    <span class="ic2">${partnerName()[0]}</span>
-    <span style="flex:1"><span class="t">${partnerName()}님이 일정을 바꿨습니다</span>
-      <span class="s">${e.title} · ${ch.before.time} → <b style="color:var(--ink)">${ch.after.time}</b>
+  return `<button class="bnr amber2" id="syncbar">
+    <span class="bic">${ic('clock',16)}</span>
+    <span class="bbd"><span class="bt">${partnerName()}님이 일정을 바꿨습니다</span>
+      <span class="bs">${e.title} · ${ch.before.time} → <b>${ch.after.time}</b>
         <br>눌러서 확인 · 24시간 안에 되돌릴 수 있어요</span></span>
-    <span class="go">›</span></button>`;
+    <span class="bgo">${ic('edit',14)}</span></button>`;
 }
 
 /* ── 일정 상세 · 편집 ───────────────────── */
@@ -5600,13 +6140,15 @@ function renderCalM(){
       <span class="s">${md(SP_TEST)} · 지금의 생활습관이 결과에 반영되는 시점</span></span></div>
     ${isTx?`<div class="ctt"><span class="ic">${ABST.getDate()}</span>
       <span><span class="t">금욕 시작 (2~3일)</span><span class="s">${md(ABST)}부터 · 채취 3일 전</span></span></div>`:''}
-    <button class="ctt" id="addEvt"><span class="ic">＋</span>
+    <button class="ctt" id="addEvt">
+        <span class="iconbox md blue">${ic('plus',17)}</span>
       <span><span class="t">일정 추가하기</span>
       <span class="s">${sharedOn()
         ? '등록하면 '+partnerName()+'님 캘린더에도 바로 나타납니다'
         : '파트너를 연결하면 두 사람이 함께 보고 수정할 수 있습니다'}</span></span>
       <span class="go">›</span></button>
-    <button class="ctt" id="addLog"><span class="ic">✎</span>
+    <button class="ctt" id="addLog">
+        <span class="iconbox md rose">${ic('edit',17)}</span>
       <span><span class="t">오늘 기록하기</span>
       <span class="s">발열 · 열 노출 · 금욕 · 정액검사</span></span><span class="go">›</span></button>
   </div>`);
@@ -5697,7 +6239,7 @@ function renderCalF(){
       <span><i style="background:#fff;box-shadow:inset 0 0 0 1.5px #16204A"></i>오늘</span></div>
 
     ${(()=>{const lp=lhPlan();return lp.ok?`<button class="ctt" id="fwGo2" style="margin-top:12px">
-      <span class="ic" style="background:#FBE9EF;color:var(--fertile)">◑</span>
+        <span class="iconbox md rose">${ic('target',17)}</span>
       <span><span class="t">가임기 정확도와 LH 계획</span>
       <span class="s">${lp.state==='now'?'지금이 LH 검사 기간 · 스트립 약 '+lp.strips+'개'
         :lp.state==='before'?lp.left+'일 뒤 검사 시작 · '+lp.start+'~'+lp.end+'일차'
@@ -6682,7 +7224,7 @@ function renderMy(){
   paint(`<div class="mytop">
       <div class="avatar">${(S.auth.nickname||'F')[0]}</div>
       <div style="flex:1"><div class="nm">${S.auth.nickname||'회원'}</div>
-        <div class="sub">${(S.auth.methods||[]).map(m=>SNSNAME[m]).join(' · ')||'—'} 로그인 · ${S.gender==='F'?'여성':'남성'} 만 ${S.a.age||32}세</div>
+        <div class="sub">${SNSNAME[S.auth.provider]||'—'} 로그인 · ${S.gender==='F'?'여성':'남성'} 만 ${S.a.age||32}세</div>
         <button id="stageQuick" style="display:flex;align-items:center;gap:6px;margin-top:8px;
           padding:6px 11px;border-radius:20px;background:#FBE9EF;color:var(--fertile);
           font-size:11.5px;font-weight:600">
@@ -6699,58 +7241,62 @@ function renderMy(){
       </div>
 
       <div class="mysec"><div class="h">계정</div>
-        <button class="myrow" data-m="profile"><span class="ic">◉</span>
+        <button class="myrow" data-m="profile"><span class="iconbox md dim">${ic('user',17)}</span>
           <span><span class="t">회원정보 관리</span><span class="s">닉네임 · 연결 계정 · 기본 정보</span></span>
           <span class="rt"><span class="go">›</span></span></button>
-        <button class="myrow" data-m="consent"><span class="ic">▤</span>
+        <button class="myrow" data-m="consent"><span class="iconbox md dim">${ic('doc',17)}</span>
           <span><span class="t">약관 및 동의 관리</span><span class="s">민감정보 동의 · 마케팅 수신</span></span>
           <span class="rt"><span class="go">›</span></span></button>
       </div>
 
       <div class="mysec"><div class="h">연결</div>
-        <button class="myrow" data-m="partner"><span class="ic">◑</span>
+        <button class="myrow" data-m="partner"><span class="iconbox md rose">${ic('link',17)}</span>
           <span><span class="t">파트너 관리</span><span class="s">연결 상태 · 공유 항목 설정</span></span>
           <span class="rt"><span class="v">${S.a.partner==='now'?'연결됨':'미연결'}</span></span></button>
-        <button class="myrow" data-m="device"><span class="ic">◯</span>
+        <button class="myrow" data-m="device"><span class="iconbox md blue">${ic('watch',17)}</span>
           <span><span class="t">연동 기기 관리</span><span class="s">${dev?`${S.device.model} · ${PLATFORMS[S.link.platform].n}`:'연동된 기기 없음'}</span></span>
           <span class="rt"><span class="v" style="color:${dev?'var(--ok)':'var(--fertile)'}">${dev?'연결됨':'연결하기'}</span></span></button>
-        <button class="myrow" data-m="data"><span class="ic">≡</span>
+        <button class="myrow" data-m="data"><span class="iconbox md teal">${ic('data',17)}</span>
           <span><span class="t">데이터 연동 관리</span><span class="s">건강 앱 · 휴대폰 센서 · 내보내기</span></span>
           <span class="rt"><span class="v">${linkCount}개 연동</span></span></button>
       </div>
 
       <div class="mysec"><div class="h">소식</div>
-        <button class="myrow" data-m="notice"><span class="ic">◆</span>
+        <button class="myrow" data-m="notice"><span class="iconbox md blue">${ic('megaphone',17)}</span>
           <span><span class="t">공지사항</span><span class="s">업데이트 · 이벤트 · 점검 안내</span></span>
           <span class="rt">${unreadNotices()?`<span class="v" style="color:var(--fertile)">${unreadNotices()}건 새 글</span>`:'<span class="go">›</span>'}</span></button>
       </div>
 
       <div class="mysec"><div class="h">포인트</div>
-        <button class="myrow" data-m="point"><span class="ic">P</span>
+        <button class="myrow" data-m="point"><span class="iconbox md rose">${ic('point',17)}</span>
           <span><span class="t">포인트 내역</span><span class="s">적립 방법 · 유효기간 · 사용 내역</span></span>
           <span class="rt"><span class="v">${(S.point.balance||0).toLocaleString()}P</span></span></button>
-        <button class="myrow" data-m="shop"><span class="ic">◇</span>
+        <button class="myrow" data-m="shop"><span class="iconbox md rose">${ic('gift',17)}</span>
           <span><span class="t">포인트 상점</span><span class="s">검사 키트 · 체온계 · 영양제 · 기프티콘</span></span>
           <span class="rt"><span class="go">›</span></span></button>
       </div>
 
       <div class="mysec"><div class="h">나의 여정</div>
-        <button class="myrow" data-m="journey"><span class="ic">◔</span>
+        <button class="myrow" data-m="journey"><span class="iconbox md teal">${ic('chart',17)}</span>
           <span><span class="t">나의 여정 리포트</span><span class="s">행동 · 임상 지표 · 결과 추적</span></span>
           <span class="rt"><span class="go">›</span></span></button>
-        <button class="myrow" data-m="saved"><span class="ic">★</span>
+        <button class="myrow" data-m="saved"><span class="iconbox md amber">${ic('star',17)}</span>
           <span><span class="t">저장한 콘텐츠</span><span class="s">읽다가 저장한 글 모아보기</span></span>
           <span class="rt">${S.saved.length?`<span class="v">${S.saved.length}개</span>`:'<span class="go">›</span>'}</span></button>
-        <button class="myrow" data-m="benefit"><span class="ic">◈</span>
+        <button class="myrow" data-m="benefit"><span class="iconbox md rose">${ic('sparkle',17)}</span>
           <span><span class="t">베네핏</span><span class="s">언락 · 전문가 질문권 · 커플 목표</span></span>
           <span class="rt"><span class="v">2,400P</span></span></button>
       </div>
 
       <div class="mysec"><div class="h">이용</div>
-        <button class="myrow" data-m="pay"><span class="ic">₩</span>
+        <button class="myrow" data-m="plans"><span class="iconbox md dim">${ic('compare',17)}</span>
+          <span><span class="t">서비스 제공 범위</span>
+          <span class="s">전 기능 무료 · 매출 구조 안내</span></span>
+          <span class="rt"><span class="go">›</span></span></button>
+        <button class="myrow" data-m="pay"><span class="iconbox md dim">${ic('card',17)}</span>
           <span><span class="t">결제 정보 관리</span><span class="s">구독 · 결제 수단 · 이용 내역</span></span>
           <span class="rt"><span class="v">${S.sub.plan==='free'?'Free':S.sub.plan==='care'?'Care':'Cycle+'}</span></span></button>
-        <button class="myrow" data-m="noti"><span class="ic">♪</span>
+        <button class="myrow" data-m="noti"><span class="iconbox md dim">${ic('bell',17)}</span>
           <span><span class="t">알림 설정</span><span class="s">주기 · 시술 · 코칭 알림</span></span>
           <span class="rt"><span class="go">›</span></span></button>
       </div>
@@ -6771,13 +7317,13 @@ function renderMy(){
         </div>
       </div>
       <div class="mysec"><div class="h">약관 및 정책</div>
-        <button class="myrow" data-m="terms"><span class="ic">§</span>
+        <button class="myrow" data-m="terms"><span class="iconbox md dim">${ic('doc',17)}</span>
           <span><span class="t">이용약관 · 개인정보처리방침</span>
           <span class="s">포인트 정책 · 결제 및 환불 정책</span></span>
           <span class="rt"><span class="go">›</span></span></button>
       </div>
       <div style="font-size:10.5px;color:var(--ink-3);text-align:center;margin-top:14px;line-height:1.8">
-        freyaX v4.0.0 · 국내 서비스<br>회원 탈퇴 시 모든 건강 기록과 포인트가 즉시 소멸됩니다.</div>
+        freyaX v4.2.0 · 국내 서비스 · 전 기능 무료<br>회원 탈퇴 시 모든 건강 기록과 포인트가 즉시 소멸됩니다.</div>
     </div>`);
   const sq=document.getElementById('stageQuick');
   if(sq) sq.onclick=()=>{S.myView='stagepick';renderMySub();};
@@ -6803,11 +7349,13 @@ function renderMySub(){
   if(v==='benefit')   return mySubBenefit();
   if(v==='notice')    return renderNotice();
   if(v==='saved')     return renderSaved();
+  if(v==='security')  return mySubSecurity();
+  if(v==='withdraw')  return mySubWithdraw();
+  if(v==='plans')     return mySubPlans();
   if(v==='point')     return renderPoint();
   if(v==='shop')      return renderShop();
   if(v==='addr')      return renderAddr();
   if(v==='card')      return renderCard();
-  if(v==='checkout')  return renderCheckout();
   if(v==='terms')     return renderTerms();
   S.myView=null; renderMy();
 }
@@ -6828,21 +7376,18 @@ function mySubProfile(){
 
     <div class="card">
       <div class="eyebrow">로그인 수단</div>
-      <div style="font-size:11.5px;color:var(--ink-3);line-height:1.65;margin:8px 0 4px">
-        가입에 사용한 수단으로만 로그인할 수 있습니다. 계정 간 기록 이관은 제공하지 않습니다.</div>
-      ${['kakao','apple','google','email'].map((k,i,arr)=>{
-        const on=(S.auth.methods||[]).includes(k);
-        const [ic,bg,fg]=SNSMARK[k];
-        return `<div class="methodrow" ${i===arr.length-1?'style="border:none"':''}>
+      ${(()=>{const k=S.auth.provider||'email'; const [ic,bg,fg]=SNSMARK[k]||SNSMARK.email;
+        return `<div class="methodrow" style="border:none;padding-top:12px">
           <span class="mi" style="background:${bg};color:${fg}">${ic}</span>
           <span style="flex:1"><span style="font-size:13px;font-weight:500">${SNSNAME[k]}</span>
-            ${on?`<br><span style="font-size:10.5px;color:var(--ink-3)">${k===S.auth.provider?'대표 · ':''}연결됨</span>`:''}</span>
-          <button class="btn ghost sm" data-mth="${k}" style="width:auto;padding:7px 13px;font-size:11.5px;
-            ${on?'color:var(--ink-3)':'color:var(--ink);border-color:var(--ink)'}">${on?'해제':'연결'}</button>
-        </div>`;}).join('')}
+            <br><span style="font-size:10.5px;color:var(--ink-3)">${S.auth.email||'—'}</span></span>
+          <span class="tag ok">사용 중</span>
+        </div>`;})()}
       <div class="privnote" style="margin-top:11px">
-        로그인 수단을 잃으셨다면 고객센터로 문의해 주세요. 본인 확인 후 변경해 드립니다.
-        새 계정을 만드시면 기존 기록·파트너 연결을 이어받을 수 없습니다.</div>
+        <b>가입에 사용한 수단으로만 로그인할 수 있습니다.</b><br>
+        여러 수단을 한 계정에 연결하는 기능은 제공하지 않습니다.
+        로그인 수단에 접근할 수 없게 되셨다면 고객센터로 문의해 주세요. 본인 확인 후 변경해 드립니다.
+      </div>
     </div>
     <div class="card">
       <div class="eyebrow">기본 정보</div>
@@ -6858,26 +7403,12 @@ function mySubProfile(){
         시술을 시작했거나 쉬게 되었다면 여기서 바꿔주세요. 홈 화면과 알림이 함께 바뀝니다.</div>
       <button class="btn ghost sm" id="chgStage" style="margin-top:12px">현재 단계 변경하기</button>
     </div>
-    <button class="btn ghost sm" style="color:var(--fertile);border-color:#F0D4DC">회원 탈퇴</button>
+    <button class="btn ghost sm" id="toSec" style="color:var(--fertile);border-color:#F0D4DC">계정 및 보안 · 탈퇴</button>
   </div>`);
   const cs=document.getElementById('chgStage');
   if(cs) cs.onclick=()=>{S.myView='stagepick';renderMySub();};
-  scr.querySelectorAll('[data-mth]').forEach(b=>b.onclick=()=>{
-    const k=b.dataset.mth, ms=S.auth.methods||[];
-    if(ms.includes(k)){
-      if(ms.length<=1) return;
-      S.auth.methods=ms.filter(x=>x!==k);
-      if(S.auth.provider===k){
-        S.auth.provider=S.auth.methods[0];
-        const np=SNS.find(x=>x.k===S.auth.provider);
-        S.auth.email = np? np.email : 'jiwon@gmail.com';
-      }
-    } else {
-      S.auth.methods=[...ms,k];
-      if(k==='email'&&!S.auth.email.includes('@')) S.auth.email='jiwon@gmail.com';
-    }
-    mySubProfile();
-  });
+  const ts2=document.getElementById('toSec');
+  if(ts2) ts2.onclick=()=>{S.myView='security';renderMySub();};
   bindBack();
 }
 
@@ -7177,42 +7708,17 @@ function mySubData(){
 }
 
 function mySubPay(){
-  const cur=PLANS[S.sub.plan]||PLANS.free;
-  const yr=S.sub.cycle==='year';
   paint(`${subHead('결제 정보 관리')}<div class="pad">
-    <div class="card" style="background:var(--ink);border-color:var(--ink);color:#fff">
-      <div class="eyebrow" style="color:rgba(255,255,255,.5)">현재 이용 중</div>
-      <div style="font-family:var(--serif);font-size:22px;font-weight:700;margin:7px 0 4px">${cur.n}</div>
-      <div style="font-size:12px;color:rgba(255,255,255,.66);line-height:1.7">
-        ${S.sub.plan==='free'?'유료 기능은 아직 사용하지 않고 있습니다.'
-          :`${yr?'연간':'월간'} 결제 · 다음 결제일 ${S.sub.next} · ${S.sub.method||'수단 없음'}`}</div>
+    <div class="bnr teal2">
+      <span class="bic">${ic('check',16)}</span>
+      <span class="bbd"><span class="bt">모든 기능이 무료입니다</span>
+        <span class="bs">구독료를 받지 않습니다. 결제는 상점에서 실물 상품을 교환하실 때만 발생합니다.</span></span>
     </div>
 
-    <div class="slotlbl"><span class="eyebrow">요금제</span><hr></div>
-    <div style="display:flex;gap:7px;margin-bottom:10px">
-      ${[['month','월간'],['year','연간 · 20% 할인']].map(x=>`
-        <button class="btn ghost sm" data-cy="${x[0]}" style="flex:1;padding:9px 0;
-          ${S.sub.cycle===x[0]?'border-color:var(--ink);background:#F3F5FB;color:var(--ink);font-weight:600':''}">${x[1]}</button>`).join('')}
-    </div>
-    ${Object.values(PLANS).map(pl=>`<button class="plancard ${S.sub.plan===pl.k?'on3':''}" data-pl="${pl.k}">
-      <div class="ph2"><b>${pl.n}${pl.rec?' <span class="tag hot" style="font-size:8.5px">추천</span>':''}</b>
-        <span class="pr">${pl.price===0?'무료'
-          :yr?`${(pl.yprice/10000).toFixed(1)}만원<span style="font-size:10px;color:var(--ink-3)">/년</span>`
-             :`${pl.price.toLocaleString()}원<span style="font-size:10px;color:var(--ink-3)">/월</span>`}</span></div>
-      <div class="ps">${pl.sub}${pl.k==='couple'?' · 1인당 '+Math.round(pl.price/2).toLocaleString()+'원':''}</div>
-      <ul>${pl.feat.map(f=>`<li>${f}</li>`).join('')}</ul>
-    </button>`).join('')}
-
-    <div class="card" style="background:#EEF3F1;border-color:#DCE7E3">
-      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.85">
-        <b style="color:var(--ok)">With Partner는 계정 2개 기준</b>입니다.
-        Self Care를 각자 결제하면 19,800원이지만, With Partner는 15,900원으로
-        <b>파트너 전용 기능</b>까지 함께 열립니다.<br>
-        <span style="color:var(--ink-3)">파트너 연결 자체는 무료입니다. 유료는 양방향 편집·오버레이·공동 목표입니다.</span>
-      </div>
-    </div>
-
-    <div class="slotlbl"><span class="eyebrow">결제 수단</span><hr></div>
+    <div class="slotlbl"><span class="eyebrow">배송 상품 결제 수단</span><hr></div>
+    <div style="font-size:11.5px;color:var(--ink-3);line-height:1.65;margin-bottom:9px">
+      검사 키트·영양제처럼 실물로 배송되는 상품에만 쓰입니다.
+      포인트로 전액 교환하시는 경우에는 카드가 필요하지 않습니다.</div>
     ${S.sub.card?`
     <div class="cardart">
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
@@ -7225,56 +7731,46 @@ function mySubPay(){
     <button class="btn ghost sm" id="delCard" style="margin-top:8px;color:var(--fertile);border-color:#F0D4DC">카드 삭제</button>
     `:`
     <div class="card" style="text-align:center;padding:24px 18px">
+      <div class="iconbox lg dim" style="margin:0 auto 14px">${ic('card',22)}</div>
       <div style="font-size:13.5px;font-weight:600;margin-bottom:6px">등록된 카드가 없습니다</div>
       <div style="font-size:12px;color:var(--ink-2);line-height:1.75;margin-bottom:16px">
         신용·체크카드만 지원합니다.<br>무통장 입금과 계좌이체는 제공하지 않습니다.</div>
       <button class="btn sm" id="addCard">카드 등록하기</button>
     </div>`}
 
-    ${S.sub.plan!=='free'?`
-    <div class="slotlbl"><span class="eyebrow">이용 내역</span><hr></div>
+    <div class="slotlbl"><span class="eyebrow">구매 내역</span><hr></div>
     <div class="card">
-      ${[['2026.08.28',cur.n+' '+(yr?'연간':'월간'),(yr?cur.yprice:cur.price).toLocaleString()+'원'],
-         ['2026.07.28','Care 월간','9,900원'],
-         ['2026.06.28','포인트 교환 (커피 기프티콘)','695P']]
-        .map((x,i2,a)=>`<div class="field" ${i2===a.length-1?'style="border:none"':''}>
-          <span class="k">${x[1]}<small style="display:block;font-size:10.5px;color:var(--ink-3);margin-top:2px">${x[0]} · 완료</small></span>
-          <span class="v" style="font-family:var(--mono);font-size:12px">${x[2]}</span></div>`).join('')}
+      ${S.orders.length?S.orders.map((o,i2,a)=>`<div class="field" ${i2===a.length-1?'style="border:none"':''}>
+        <span class="k">${o.item}${o.qty>1?` ${o.qty}개`:''}
+          <small style="display:block;font-size:10.5px;color:var(--ink-3);margin-top:2px">
+            ${o.at.replaceAll('-','.')} · ${o.status}</small></span>
+        <span class="v" style="font-family:var(--mono);font-size:11.5px">
+          ${o.usedP?`${o.usedP.toLocaleString()}P`:''}${o.cash?` + ${o.cash.toLocaleString()}원`:''}</span></div>`).join('')
+      :`<div style="font-size:12px;color:var(--ink-3);padding:6px 2px">구매 내역이 없습니다.</div>`}
     </div>
-    <button class="btn ghost sm" id="cancel" style="color:var(--fertile);border-color:#F0D4DC">구독 해지</button>
-    `:''}
 
-    <div class="card" style="background:#F5F7F5;border-style:dashed;margin-top:12px">
+    <div class="card" style="background:#F5F7F5;border-style:dashed">
       <div class="eyebrow">환불 정책</div>
       <div style="font-size:11.5px;color:var(--ink-2);line-height:1.9;margin-top:8px">
-        <b>구독</b><br>
-        · 결제 후 <b>7일 이내</b>이고 유료 기능을 쓰지 않으셨다면 전액 환불<br>
-        · 사용하신 경우 남은 기간을 일할 계산해 환불<br>
-        · 연간 결제는 이용한 개월수를 <b>월간 요금</b>으로 환산 후 차액 환불<br><br>
-        <b>포인트 교환 상품</b><br>
         · 수령 후 <b>7일 이내</b> 청약철회 가능<br>
         · 사용 포인트는 <b>포인트로</b>, 카드 결제분은 <b>카드로</b> 각각 환불<br>
         · 개봉·사용한 건강기능식품, 발송 완료된 디지털 상품은 철회가 제한될 수 있습니다<br>
-        · 환불된 포인트의 유효기간은 <b>최초 적립일 기준</b>을 그대로 따릅니다
+        · 환불된 포인트의 유효기간은 <b>최초 적립일 기준</b>을 그대로 따릅니다<br>
+        · 상품 하자·오배송의 경우 배송비를 회사가 부담합니다
       </div>
       <button class="btn ghost sm" id="rterm" style="margin-top:11px">결제·환불 약관 전문</button>
     </div>
+
+    <button class="btn ghost sm" id="toPlans2">제공 범위 전체 보기</button>
   </div>`);
-  scr.querySelectorAll('[data-cy]').forEach(b=>b.onclick=()=>{S.sub.cycle=b.dataset.cy;renderMySub();});
-  scr.querySelectorAll('[data-pl]').forEach(b=>b.onclick=()=>{
-    const k=b.dataset.pl;
-    if(k===S.sub.plan) return;
-    if(k==='free'){ S.sub.plan='free'; S.sub.next='—'; S.sub.method=null; renderMySub(); return; }
-    S.shop.useP=0; S.sub.pending=k; S.myView='checkout'; renderMySub();
-  });
   ['addCard','editCard'].forEach(id=>{const b=document.getElementById(id);
     if(b) b.onclick=()=>{S.myView='card';renderMySub();};});
   const dc=document.getElementById('delCard');
   if(dc) dc.onclick=()=>{S.sub.card=null;S.sub.method=null;renderMySub();};
-  const c=document.getElementById('cancel');
-  if(c) c.onclick=()=>{S.sub.plan='free';S.sub.next='—';S.sub.method=null;renderMySub();};
   const rt=document.getElementById('rterm');
   if(rt) rt.onclick=()=>{S.termsView='pay';S.myView='terms';renderMySub();};
+  const tp2=document.getElementById('toPlans2');
+  if(tp2) tp2.onclick=()=>{S.myView='plans';renderMySub();};
   bindBack();
 }
 
@@ -7302,6 +7798,10 @@ function renderCard(){
       <div class="inp"><label>생년월일 6자리 (선택)</label>
         <input id="cb" inputmode="numeric" maxlength="6" placeholder="940101" value="${C2.birth}"></div>
 
+      <div class="privnote" style="background:#EEF3F1;border-color:#DCE7E3;color:var(--ink-2)">
+        <b style="color:var(--ok)">이 카드는 배송 상품 결제에만 쓰입니다.</b><br>
+        구독은 스토어 인앱결제로 진행되므로 여기에 카드를 등록하지 않으셔도 됩니다.
+      </div>
       <div class="privnote">
         <b>카드 정보는 저희 서버에 저장되지 않습니다.</b><br>
         결제대행사(PG)가 발급한 <b>빌링키</b>만 보관하며, 카드 번호 전체는 PG사에서만 관리합니다.
@@ -7329,102 +7829,13 @@ function renderCard(){
     S._card=null; S.myView='pay'; renderMySub();};
 }
 
-/* ══ 구독 결제 (복합 결제) ════════════════ */
-function renderCheckout(){
-  seedPointLog();
-  const pl=PLANS[S.sub.pending]||PLANS.self;
-  const yr=S.sub.cycle==='year';
-  const price=yr?pl.yprice:pl.price;
-  const canUse=S.point.balance>=P_MIN_USE;
-  const maxP=canUse?Math.min(S.point.balance, Math.floor(price*0.5)):0;
-  const useP=Math.min(S.shop.useP||0, maxP);
-  const cash=price-useP;
-  paint(`<div class="subhead"><button id="mb">‹</button><span class="t">결제</span></div>
-    <div class="pad">
-      <div class="card">
-        <div class="eyebrow">주문 내용</div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:9px">
-          <span style="font-size:15px;font-weight:600">${pl.n}</span>
-          <span style="font-family:var(--mono);font-size:15px;font-weight:600">${price.toLocaleString()}원</span></div>
-        <div style="font-size:11.5px;color:var(--ink-3);margin-top:4px">
-          ${yr?'연간 결제 · 20% 할인 적용':'월간 자동 결제'} · ${pl.sub}</div>
-      </div>
-
-      <div class="card">
-        <div class="eyebrow">포인트 사용</div>
-        <div style="display:flex;align-items:center;gap:10px;margin-top:11px">
-          <div style="flex:1"><input type="range" id="pr2" min="0" max="${maxP}" step="100" value="${useP}"
-            ${maxP?'':'disabled'}></div>
-          <div style="font-family:var(--mono);font-size:14px;font-weight:600;width:74px;text-align:right">
-            ${useP.toLocaleString()}P</div></div>
-        <div style="display:flex;gap:7px;margin-top:9px">
-          <button class="btn ghost sm" id="pmax" style="flex:1;padding:8px 0;font-size:11.5px">최대 사용</button>
-          <button class="btn ghost sm" id="pzero" style="flex:1;padding:8px 0;font-size:11.5px">사용 안 함</button></div>
-        <div style="font-size:10.5px;color:var(--ink-3);line-height:1.7;margin-top:9px;
-          border-top:1px solid var(--line);padding-top:9px">
-          보유 ${S.point.balance.toLocaleString()}P · 구독 결제에는 <b>결제 금액의 50%까지</b> 사용하실 수 있습니다.
-          ${canUse?'':`<br><span style="color:var(--amber)">최소 사용 ${P_MIN_USE.toLocaleString()}P 미만이라 사용할 수 없습니다.</span>`}
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="payrow"><span class="pk">상품 금액</span><span class="pv2">${price.toLocaleString()}원</span></div>
-        <div class="payrow"><span class="pk">포인트 사용</span>
-          <span class="pv2" style="color:var(--ok)">−${useP.toLocaleString()}원</span></div>
-        <div class="payrow total"><span class="pk">최종 결제 금액</span>
-          <span class="pv2">${cash.toLocaleString()}원</span></div>
-      </div>
-
-      <div class="card">
-        <div class="eyebrow">결제 수단</div>
-        ${S.sub.card?`<div class="field" style="border:none;padding-top:12px">
-          <span class="k">${S.sub.card.brand} ···· ${S.sub.card.last4}</span>
-          <button class="btn ghost sm" id="chg" style="width:auto;padding:6px 12px;font-size:11px">변경</button></div>`
-        :`<div style="font-size:12px;color:var(--fertile);padding:10px 0">등록된 카드가 없습니다.</div>
-          <button class="btn sm" id="addC">카드 등록하기</button>`}
-      </div>
-
-      <div class="privnote">
-        결제 시 <b>자동 갱신</b>됩니다. 다음 결제일 24시간 전까지 해지하시면 추가 결제되지 않습니다.<br>
-        결제 후 7일 이내이고 유료 기능을 쓰지 않으셨다면 전액 환불받으실 수 있습니다.
-      </div>
-      <button class="btn" id="pay" ${S.sub.card?'':'disabled'}>${cash.toLocaleString()}원 결제하기</button>
-      <div style="font-size:10.5px;color:var(--ink-3);line-height:1.7;margin-top:10px;text-align:center">
-        결제 진행 시 <b>이용약관</b>과 <b>결제·환불 정책</b>에 동의하는 것으로 봅니다.</div>
-    </div>`);
-  const pr2=document.getElementById('pr2');
-  if(pr2) pr2.oninput=()=>{S.shop.useP=Number(pr2.value);renderMySub();};
-  document.getElementById('pmax').onclick=()=>{S.shop.useP=maxP;renderMySub();};
-  document.getElementById('pzero').onclick=()=>{S.shop.useP=0;renderMySub();};
-  ['addC','chg'].forEach(id=>{const b=document.getElementById(id);
-    if(b) b.onclick=()=>{S.myView='card';renderMySub();};});
-  document.getElementById('mb').onclick=()=>{S.myView='pay';renderMySub();};
-  document.getElementById('pay').onclick=()=>{
-    if(useP>0){ S.point.balance-=useP;
-      S.point.log=[{at:fmtD(today0()),k:'use',p:-useP,type:'use',memo:pl.n+' 구독 결제'},...S.point.log]; }
-    S.sub.plan=pl.k; S.sub.next=yr?'2027. 08. 28':'2026. 09. 28'; S.shop.useP=0; S.sub.pending=null;
-    paint(`<div class="pad" style="padding-top:44px;text-align:center">
-      <div class="donemark">✓</div>
-      <div class="qtitle" style="font-size:21px">결제가 완료됐습니다</div>
-      <div class="qsub" style="text-align:center">${pl.n} · 다음 결제일 ${S.sub.next}</div>
-      <div class="card" style="margin-top:18px;text-align:left">
-        <div class="payrow"><span class="pk">결제 금액</span><span class="pv2">${cash.toLocaleString()}원</span></div>
-        ${useP?`<div class="payrow"><span class="pk">사용 포인트</span><span class="pv2">−${useP.toLocaleString()}P</span></div>`:''}
-        <div class="payrow total"><span class="pk">남은 포인트</span>
-          <span class="pv2">${S.point.balance.toLocaleString()}P</span></div>
-      </div>
-      <button class="btn" id="go2" style="margin-top:16px">확인</button></div>`);
-    document.getElementById('go2').onclick=()=>{S.myView='pay';renderMySub();};
-  };
-}
-
 /* ══ 약관 ═════════════════════════════════ */
 const TERMS = {
  tos:{t:'이용약관', at:'2026.09.01 시행', body:[
   ['제1조 (목적)','이 약관은 회사가 제공하는 freyaX 서비스의 이용 조건과 절차, 회사와 회원의 권리·의무를 정하는 것을 목적으로 합니다.'],
   ['제2조 (서비스의 성격)','① 서비스는 <b>의료기기가 아닌 웰니스 서비스</b>입니다.\n② 주기 예측, 가임 준비 지수, 콘텐츠는 일반적인 정보 제공과 기록 관리를 위한 것이며, <b>질병의 진단·치료·예방을 목적으로 하지 않습니다.</b>\n③ 회원은 건강에 관한 판단을 의료진의 진찰과 검사를 근거로 하여야 합니다.\n④ "전문가에게 질문하기"는 일반적인 정보 안내이며 의료행위에 해당하지 않습니다.'],
   ['제3조 (회원가입)','① 만 14세 이상만 가입할 수 있습니다.\n② 카카오·Apple·Google 계정 또는 이메일로 가입할 수 있습니다.\n③ 회사는 <b>계정 간 데이터 이관 서비스를 제공하지 않습니다.</b>'],
-  ['제4조 (유료 서비스)','① 요금제는 Free, Self Care, With Partner로 구성됩니다.\n② 유료 서비스는 자동 갱신되며 다음 결제일 24시간 전까지 해지할 수 있습니다.\n③ 파트너 연결 기능 자체는 무료이며, 유료 대상은 공유 캘린더 양방향 편집·오버레이·공동 목표입니다.'],
+  ['제4조 (서비스의 제공 범위)','① 회사는 서비스의 <b>모든 기능을 무료로 제공</b>합니다. 구독료나 기능별 이용료를 받지 않습니다.\n② 유상 거래는 상점에서 실물 상품 또는 인쇄물을 구매하실 때만 발생합니다.\n③ 회사는 서비스의 유료화를 추진할 경우 시행 30일 전에 공지합니다.'],
   ['제5조 (포인트)','① 포인트는 서비스 내 적립금으로 <b>현금 가치가 없으며 환급·양도할 수 없습니다.</b>\n② 유효기간은 적립일로부터 12개월입니다.\n③ 부정 적립분은 회수될 수 있습니다.\n④ 탈퇴 시 잔여 포인트는 즉시 소멸합니다.'],
   ['제6조 (금지행위)','타인 정보 도용, 자동화 수단을 이용한 포인트 적립, 의학적 근거 없는 정보의 게시, 특정 의료기관·의약품의 광고·알선, 타인의 건강 정보 무단 게시를 금지합니다.'],
   ['제7조 (책임의 제한)','① 회사는 회원이 서비스 정보를 근거로 내린 건강상 판단의 결과에 책임지지 않습니다.\n② 예측값은 참고 정보이며 정확성을 보증하지 않습니다.\n③ 파트너 간 정보 공유로 발생한 분쟁에 대해 책임지지 않습니다.'],
@@ -7454,10 +7865,9 @@ const TERMS = {
  ]},
  pay:{t:'결제·환불 정책', at:'2026.09.01 시행', body:[
   ['1. 결제 수단','<b>신용·체크카드만</b> 지원합니다. 무통장 입금과 계좌이체는 제공하지 않습니다. 카드 정보는 서버에 저장되지 않고 결제대행사 빌링키만 보관합니다.'],
-  ['2. 요금제','Free 0원 · Self Care 월 9,900원 / 연 95,000원 · With Partner 월 15,900원 / 연 152,000원 (계정 2개)'],
-  ['3. 자동 갱신','결제 주기마다 자동 갱신되며, 다음 결제일 <b>24시간 전</b>까지 해지하면 추가 결제되지 않습니다. 결제 3일 전 알림을 보냅니다.'],
-  ['4. 구독 환불','① 결제 후 7일 이내이고 미이용 시 <b>전액 환불</b>\n② 이용 시 남은 기간 일할 계산 환불\n③ 연간 결제는 이용 개월수를 <b>월간 요금으로 환산</b> 후 차액 환불'],
-  ['5. 상품 환불','수령 후 7일 이내 청약철회 가능. 다만 개봉·사용한 건강기능식품, 발송 완료된 디지털 상품, 회원 책임으로 훼손된 상품은 제한됩니다.'],
+  ['2. 유상 거래의 범위','회사는 서비스 기능에 대해 이용료를 받지 않습니다. 유상 거래는 <b>상점의 실물 상품·인쇄물 구매</b>에 한합니다.'],
+  ['3. 정기 결제','정기 결제 상품은 제공하지 않습니다. 모든 거래는 <b>1회성 구매</b>입니다.'],
+  ['4. 상품 환불','수령 후 7일 이내 청약철회 가능. 다만 개봉·사용한 건강기능식품, 발송 완료된 디지털 상품, 회원 책임으로 훼손된 상품은 제한됩니다.'],
   ['6. 복합 결제 취소','포인트와 카드를 함께 사용한 결제를 취소하면 <b>포인트는 포인트로, 현금은 카드로</b> 각각 환불됩니다.'],
   ['7. 미성년자','만 19세 미만의 결제는 법정대리인 동의가 필요하며, 동의 없는 결제는 취소할 수 있습니다.'],
  ]},
@@ -7738,10 +8148,10 @@ function updateInsp(){
   if(!S.stage){
     const list=S.gender?q():[];
     const step={splash:'스플래시',intro:'인트로 '+(S.intro+1)+'/3',
-                preg:'간이·성별',pre:'간이 진단 '+(S.preQi+1),preres:'간이 결과',auth:'로그인 선택',email:'이메일 가입/로그인',merge:'계정 통합 제안',
+                preg:'간이·성별',pre:'간이 진단 '+(S.preQi+1),preres:'간이 결과',auth:'로그인 선택',email:'이메일 가입/로그인',merge:'기존 계정 안내',
                 consent:'약관 동의',nick:'닉네임 설정',gender:'성별 선택',q:'설문 진행'}[S.view]||S.view;
     box.innerHTML=`<div class="kv"><b>단계</b><span>${step}</span></div>
-      ${S.auth.provider?`<div class="kv"><b>인증</b><span>${(S.auth.methods||[]).map(m=>SNSNAME[m]).join('+')}</span></div>
+      ${S.auth.provider?`<div class="kv"><b>인증</b><span>${SNSNAME[S.auth.provider]||'—'}</span></div>
       <div class="kv"><b>동의</b><span>${Object.values(S.auth.agree).filter(Boolean).length} / ${AGREE.length}</span></div>`:''}
       <div class="kv"><b>단계 구분</b><span>${S.preDone?'2단 정밀':'1단 비회원'}</span></div>
       ${S.gender?`<div class="kv"><b>트랙</b><span>${S.gender==='F'?'여성 28일':'남성 90일'}</span></div>
@@ -7750,7 +8160,7 @@ function updateInsp(){
   }
   const f=S.fri, cm=cycleModel(S.a), fl=redFlags(S.a);
   box.innerHTML=`
-    <div class="kv"><b>계정</b><span>${(S.auth.methods||[]).map(m=>SNSNAME[m]).join('+')||'—'}</span></div>
+    <div class="kv"><b>계정</b><span>${SNSNAME[S.auth.provider]||'—'}</span></div>
     <div class="kv"><b>계정 복원</b><span>${S.auth.restored?'기존 계정':'신규'}</span></div>
     <div class="kv"><b>엔진 A · 분류</b><span>${S.rule} → ${S.gender}-${S.stage}</span></div>
     <div class="kv"><b>엔진 B · 지수</b><span>${f.total} / 100</span></div>
@@ -7783,8 +8193,7 @@ const RATIO={'F-S1':'24.2%','F-S2':'22.6%','F-S3':'7.0%','F-S4':'17.9%','F-S5':'
 function seedDemo(g,s){
   const L=s==='S1'?28:35, back=s==='S1'?19:25;
   const t=today0(), mk=k=>fmtD(new Date(t.getTime()-k*DAY));
-  if(!S.auth.provider){ S.auth.provider='kakao'; S.auth.email='jiwon.k@kakao.com'; S.auth.methods=['kakao'];
-    S.auth.nickname='조용한여정'+(1000+Math.floor(Math.random()*8999));
+  if(!S.auth.provider){ S.auth.provider='kakao'; S.auth.email='jiwon.k@kakao.com'; S.auth.nickname='조용한여정'+(1000+Math.floor(Math.random()*8999));
     AGREE.forEach(a=>S.auth.agree[a.k]=true); }
   S.a={age:g==='F'?32:34,h:g==='F'?163:175,w:g==='F'?72:78,cycle:s==='S1'?'reg':'long',parity:'0',
        diet:'late',ex:'1',sleep:'6',dx:[],sa:(g==='M'&&s==='S2')?'never':'normal',habit:[],ttp:'6',
@@ -7811,11 +8220,14 @@ document.querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{
   const j=b.dataset.j;
   if(j==='intro'){ S.intro=0; S.view='intro'; renderIntro(); tabsEl.style.display='none'; return; }
   if(j==='pre'){ S.gender=null; S.a={}; S.preQi=0; S.preDone=false;
-    S.auth={provider:null,nickname:'',email:'',agree:{},methods:[],restored:false};
+    S.auth={provider:null,nickname:'',email:'',agree:{},restored:false,
+      autoLogin:true,lastLogin:'2026.09.08 09:12',joinedAt:'2026.03.11',sessions:[],loginLog:[]};
     S.view='preg'; renderPreGender(); tabsEl.style.display='none'; return; }
-  if(j==='auth'){ S.view='auth'; S.auth={provider:null,nickname:'',email:'',agree:{},methods:[],restored:false};
+  if(j==='auth'){ S.view='auth'; S.auth={provider:null,nickname:'',email:'',agree:{},restored:false,
+      autoLogin:true,lastLogin:'2026.09.08 09:12',joinedAt:'2026.03.11',sessions:[],loginLog:[]};
     renderAuth(); tabsEl.style.display='none'; return; }
-  if(j==='email'){ S.view='email'; S.auth={provider:null,nickname:'',email:'',agree:{},methods:[],restored:false};
+  if(j==='email'){ S.view='email'; S.auth={provider:null,nickname:'',email:'',agree:{},restored:false,
+      autoLogin:true,lastLogin:'2026.09.08 09:12',joinedAt:'2026.03.11',sessions:[],loginLog:[]};
     S.em={step:0,mode:'signup',email:'',pw:''}; renderEmail(); tabsEl.style.display='none'; return; }
   if(j==='merge'){ S.auth={provider:null,nickname:'',email:'',agree:{},methods:[],restored:false,
     pending:{provider:'google',email:'jiwon@gmail.com'}};
@@ -7861,6 +8273,8 @@ document.querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{
   if(j==='shop'){ S.art=null; seedPointLog(); S.shop={cat:'all',item:null,qty:1,useP:0};
     S.view='app'; S.tab='my'; S.myView='shop'; renderApp(); return; }
   if(j==='pay'){ S.art=null; S.view='app'; S.tab='my'; S.myView='pay'; renderApp(); return; }
+  if(j==='sec'){ S.art=null; seedSessions(); S.view='app'; S.tab='my'; S.myView='security'; renderApp(); return; }
+  if(j==='plans'){ S.art=null; S.view='app'; S.tab='my'; S.myView='plans'; renderApp(); return; }
   if(j==='terms'){ S.art=null; S.termsView='tos'; S.view='app'; S.tab='my'; S.myView='terms'; renderApp(); return; }
   if(j==='survey'){ S.art=null; S.survey={done:[],answers:{},step:0,cur:'d30'};
     S.view='survey'; renderSurvey(); return; }
@@ -7873,7 +8287,8 @@ document.querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{
   buildSwitcher();
 });
 function resetAll(){
-  Object.assign(S,{view:'splash',intro:0,auth:{provider:null,nickname:'',email:'',agree:{},methods:[],restored:false},
+  Object.assign(S,{view:'splash',intro:0,auth:{provider:null,nickname:'',email:'',agree:{},restored:false,
+      autoLogin:true,lastLogin:'2026.09.08 09:12',joinedAt:'2026.03.11',sessions:[],loginLog:[]},
     gender:null,a:{},qi:0,stage:null,rule:null,why:'',fri:null,layers:[],tab:'home',myView:null,
     done:{},demo:false,device:{connected:false,model:null,nights:0,sync:'—'},
     link:{platform:null,phone:true,health:false,watch:false,writeback:false,
